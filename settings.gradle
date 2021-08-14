@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ClearLineage"
 include ':app'
+include ':shape:launcher'
