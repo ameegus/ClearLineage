@@ -1,0 +1,2 @@
+# ClearLineage
+LineageOS Clear Theme
