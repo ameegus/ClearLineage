@@ -7,4 +7,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ClearLineage"
-include ':app'
+include ':android'
+include ':systemui'
