@@ -18,6 +18,10 @@ public class PackageHook implements IXposedHookLoadPackage {
 	@Override
 	public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
 		if (!lpparam.packageName.equals("com.android.systemui")) return;
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
+			XposedBridge.log("Android Version not supported!");
+			return;
+		}
 		XposedBridge.log("Hooking systemui");
 		
 		final Class<?> scrimdrawableclass = XposedHelpers.findClass("com.android.internal.colorextraction.drawable.ScrimDrawable", lpparam.classLoader);
