@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ClearLineage</string>
+    <string name="xposed_description">ClearLineage Companion module for extra clearness!</string>
+</resources>
