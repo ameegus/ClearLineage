@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.DeviceDefault" parent="@*android:style/Theme.DeviceDefaultBase">
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowElevation">0.5dip</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:windowBackgroundFallback">@android:color/transparent</item>
+        <!--<item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="Theme.DeviceDefault.QuickSettings" parent="android:Theme.DeviceDefault">
+        <!-- QS panel background -->
+        <item name="android:colorBackgroundFloating">#70000000</item>
+
+        <!-- volume background -->
+        <item name="android:panelColorBackground">#a0000000</item>
+
+        <!-- qs tile enabled icon color -->
+        <item name="android:colorPrimary">#000000</item>
+
+    </style>
+
+</resources>

@@ -17,30 +17,42 @@
   -->
 <resources>
 
-    <!-- The background color of a notification card. -->
-    <color name="notification_material_background_color">@*android:color/primary_dark_device_default_settings</color>
+    <color name="transparent_white">#80ffffff</color>
+    <color name="transparent_black">#80000000</color>
+    <color name="window_background">#50000000</color>
+    <!--<color name="transparent_white">@android:color/transparent</color>
+    <color name="transparent_black">@android:color/transparent</color>-->
 
-    <color name="theme_generic_semi_transparent_color">@*android:color/primary_dark_device_default_settings</color>
+    <color name="black">@color/transparent_black</color>
 
-    <color name="du_themes_qs_inactive_color">@*android:color/primary_dark_device_default_settings</color>
+    <color name="background_material_dark">@color/transparent_black</color>
+    <color name="background_material_light">@color/transparent_white</color>
+    <color name="background_floating_material_dark">@color/transparent_black</color>
+    <color name="background_floating_material_light">@color/transparent_white</color>
+    <color name="background_device_default_dark">@color/background_material_dark</color>
+    <color name="background_device_default_light">@color/background_material_light</color>
+    <color name="background_floating_device_default_dark">@color/background_floating_material_dark</color>
+    <color name="background_floating_device_default_light">@color/background_floating_material_light</color>
 
-    <!-- Resolver -->
-    <color name="resolver_list_bg">@*android:color/primary_dark_device_default_settings</color>
-    <color name="chooser_service_row_background_color">@*android:color/primary_dark_device_default_settings</color>
+    <drawable name="screen_background_holo_light">@color/transparent_white</drawable>
+    <drawable name="screen_background_holo_dark">@color/transparent_black</drawable>
+    <color name="background_holo_dark">@color/transparent_black</color>
+    <color name="background_holo_light">@color/transparent_white</color>
 
-    <!-- System Backgrounds -->	
-    <color name="material_grey_900">@*android:color/primary_dark_device_default_settings</color>
-    <color name="material_grey_850">@*android:color/primary_dark_device_default_settings</color>
-    <color name="material_grey_800">@*android:color/primary_dark_device_default_settings</color>
-    <color name="material_grey_600">@*android:color/primary_dark_device_default_settings</color>
-    <color name="material_blue_grey_700">@*android:color/primary_dark_device_default_settings</color>
-    <color name="material_blue_grey_800">@*android:color/primary_dark_device_default_settings</color>
-    <color name="material_blue_grey_900">@*android:color/primary_dark_device_default_settings</color>
-    <color name="material_blue_grey_950">@*android:color/primary_dark_device_default_settings</color>
+    <color name="background_leanback_dark">#80324248</color>
+    <color name="background_leanback_light">@color/transparent_white</color>
 
-    <!-- Toast text and bg colors -->
-    <color name="toast_bg_color">@*android:color/primary_dark_device_default_settings</color>
+    <color name="background_dark">@color/transparent_black</color>
+    <color name="background_light">@color/transparent_white</color>
+
+    <color name="primary_device_default_dark">@color/transparent_black</color>
+    <color name="primary_device_default_settings">@color/transparent_black</color>
+    <color name="primary_dark_device_default_dark">@color/transparent_black</color>
+    <color name="primary_dark_device_default_settings">@color/transparent_black</color>
+
+    <color name="material_grey_800">@color/transparent_black</color>
+    <color name="material_grey_900">@color/transparent_black</color>
+
+
 
 </resources>
-
-
