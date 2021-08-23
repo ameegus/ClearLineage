@@ -10,7 +10,7 @@ public class PackageHook implements IXposedHookLoadPackage {
 	@Override
 	public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
-			XposedBridge.log("Android Version not supported!");
+			XposedBridge.log("Android Version " + Build.VERSION.SDK_INT + " not supported!");
 			return;
 		}
 		switch (lpparam.packageName) {
