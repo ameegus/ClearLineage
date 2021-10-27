@@ -1,9 +1,14 @@
+#!/bin/bash
 
-if [ $API -gr 30 ] || [ $API -lt 29]; then
-	abort "Your Android version is not supported!"
-fi
-
-if [ $API -eq 29 ]; then
-	ui_print "Android 10 detected, removing overlays..."
-	rm -r "$MODPATH"/system/product/overlay
-fi
+case $API in
+	29)
+		ui_print "Android 10 detected!"
+        	ui_print "Only installing XPosed module"
+	        rm -r "$MODPATH"/system/product/overlay
+		;;
+	30)
+		;;
+	*)
+		abort "Your Android version is not supported!"
+		;;
+esac
