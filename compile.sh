@@ -1,5 +1,6 @@
+#!/bin/bash
 rm -v ClearLineage.zip
-./gradlew assembleDebug
+./gradlew assembleDebug || exit 1
 rm -r magiskmodule/system
 mkdir -v -p magiskmodule/system/product/overlay
 mkdir -v -p magiskmodule/system/app/clearlineage

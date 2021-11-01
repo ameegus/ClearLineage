@@ -1,4 +1,4 @@
-package com.programminghoch10.clearlineage.xposed;
+package com.programminghoch10.clearlineage.xposed.HooksR;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -8,13 +8,11 @@ import android.util.AttributeSet;
 import java.lang.reflect.Field;
 
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class Launcher3Hook {
 	public static void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-		XposedBridge.log("Hooking Launcher3");
 		
 		Class<?> scrimviewclass = XposedHelpers.findClass("com.android.launcher3.views.ScrimView", lpparam.classLoader);
 		XposedHelpers.findAndHookConstructor(scrimviewclass, Context.class, AttributeSet.class, new XC_MethodHook() {

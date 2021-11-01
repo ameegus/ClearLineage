@@ -1,4 +1,4 @@
-package com.programminghoch10.clearlineage.xposed;
+package com.programminghoch10.clearlineage.xposed.HooksR;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -14,7 +14,6 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class SystemUIHook {
 	public static void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-		XposedBridge.log("Hooking systemui");
 		
 		final Class<?> scrimdrawableclass = XposedHelpers.findClass("com.android.internal.colorextraction.drawable.ScrimDrawable", lpparam.classLoader);
 		XC_MethodHook alphahook = new XC_MethodHook() {
@@ -66,7 +65,7 @@ public class SystemUIHook {
 			protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
 				if (!XposedHelpers.findField(scrimcontrollerclass, "mScrimBehind").get(param.thisObject).equals(param.args[0]))
 					return;
-				param.args[1] = (float) param.args[1] / 2;
+				param.args[1] = (float) param.args[1] * 0.5f;
 				param.args[2] = Color.BLACK;
 			}
 		});

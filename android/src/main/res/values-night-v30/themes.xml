@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Theme.DeviceDefault.QuickSettings" parent="@*android:style/Theme.DeviceDefault">
         <!-- QS / volume panel background -->
         <item name="android:colorBackgroundFloating">@color/qs_panel_background</item>
@@ -12,4 +13,5 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
 
     </style>
+
 </resources>

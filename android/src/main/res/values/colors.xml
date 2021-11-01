@@ -1,39 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- clearlineage colors -->
     <color name="transparent_white">#a0ffffff</color>
     <color name="transparent_black">#a0000000</color>
+    <!--<color name="transparent_white">@android:color/transparent</color>-->
+    <!--<color name="transparent_black">@android:color/transparent</color>-->
     <color name="window_background">#50ffffff</color>
     <color name="qs_tile_color">#ffffff</color>
     <color name="qs_panel_background">#a0ffffff</color>
-    <!--<color name="transparent_white">@android:color/transparent</color>
-    <color name="transparent_black">@android:color/transparent</color>-->
 
-    <!--
-    <color name="background_material_dark">@color/transparent_black</color>
-    <color name="background_material_light">@color/transparent_white</color>
-    <color name="background_floating_material_dark">@color/transparent_black</color>
-    <color name="background_floating_material_light">@color/transparent_white</color>
-    <color name="background_device_default_dark">@color/background_material_dark</color>
-    <color name="background_device_default_light">@color/background_material_light</color>
-    <color name="background_floating_device_default_dark">@color/background_floating_material_dark</color>
-    <color name="background_floating_device_default_light">@color/background_floating_material_light</color>
-
-    <drawable name="screen_background_holo_light">@color/transparent_white</drawable>
-    <drawable name="screen_background_holo_dark">@color/transparent_black</drawable>
-    <color name="background_holo_dark">@color/transparent_black</color>
-    <color name="background_holo_light">@color/transparent_white</color>
-
-    <color name="background_leanback_dark">#80324248</color>
-    <color name="background_leanback_light">@color/transparent_white</color>
-
-    <color name="background_dark">@color/transparent_black</color>
-    <color name="background_light">@color/transparent_white</color>
-    -->
-
+    <!-- system colors -->
     <color name="notification_material_background_color">@color/transparent_white</color>
 
     <color name="primary_device_default_dark">@color/transparent_white</color>
     <color name="primary_device_default_settings">@color/transparent_white</color>
     <color name="primary_dark_device_default_dark">@color/transparent_white</color>
     <color name="primary_dark_device_default_settings">@color/transparent_white</color>
+
 </resources>
