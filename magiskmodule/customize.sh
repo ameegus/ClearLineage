@@ -8,6 +8,9 @@ case $API in
 		;;
 	30)
 		;;
+	31)
+		ui_print "Android 12 support is experimental!"
+		;;
 	*)
 		abort "Your Android version is not supported!"
 		;;

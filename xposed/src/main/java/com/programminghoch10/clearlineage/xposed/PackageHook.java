@@ -11,7 +11,7 @@ public class PackageHook implements IXposedHookLoadPackage {
 	@SuppressLint("ObsoleteSdkInt")
 	@Override
 	public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || Build.VERSION.SDK_INT > Build.VERSION_CODES.S) {
 			XposedBridge.log("Android Version " + Build.VERSION.SDK_INT + " not supported!");
 			return;
 		}

@@ -31,6 +31,10 @@ public class HooksMap {
         // R
         map.put(Build.VERSION_CODES.R, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksR.SystemUIHook.class);
         map.put(Build.VERSION_CODES.R, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksR.Launcher3Hook.class);
+
+        // S
+        map.put(Build.VERSION_CODES.S, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksS.SystemUIHook.class);
+        map.put(Build.VERSION_CODES.S, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksS.Launcher3Hook.class);
     }
 
 }
