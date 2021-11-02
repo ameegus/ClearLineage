@@ -2,54 +2,37 @@ package com.programminghoch10.clearlineage.xposed;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+import java.util.Objects;
 
-public class MultiKeyMap<K1, K2, V> extends HashMap<Integer, V> {
+public class MultiKeyMap<V> {
     Map<Integer, V> internalMap = new HashMap<>();
 
-    private int getHash(Object obj1, Object obj2) {
-        return obj1.hashCode() ^ obj2.hashCode();
+    private int getHash(Object... obj) {
+        return Objects.hash(obj);
     }
 
-    @Override
     public boolean isEmpty() {
-        return false;
+        return internalMap.isEmpty();
     }
 
-    public boolean containsKey(K1 k1, K2 k2) {
-        return super.containsKey(getHash(k1, k2));
+    public boolean containsKey(Object... obj) {
+        return internalMap.containsKey(getHash(obj));
     }
 
-    public V get(K1 k1, K2 k2) {
-        return super.get(getHash(k1, k2));
+    public V get(Object... obj) {
+        return internalMap.get(getHash(obj));
     }
 
-    public V put(K1 k1, K2 k2, V value) {
-        return super.put(getHash(k1,k2), value);
+    public V put(V value, Object... obj) {
+        return internalMap.put(getHash(obj), value);
     }
 
-    /* collides with a function from HashMap
-    public V remove(K1 k1, K2 k2) {
-        return super.remove(getHash(k1,k2));
-    }
-    */
-
-    @Override
-    public void putAll(Map<? extends Integer, ? extends V> m) {
-        throw new UnsupportedOperationException();
+    public V remove(Object... obj) {
+        return internalMap.remove(getHash(obj));
     }
 
     public void clear() {
-        super.clear();
+        internalMap.clear();
     }
 
-    @Override
-    public Set<Integer> keySet() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Set<Entry<Integer, V>> entrySet() {
-        throw new UnsupportedOperationException();
-    }
 }
