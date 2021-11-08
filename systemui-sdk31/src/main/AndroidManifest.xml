@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.programminghoch10.clearlineage.systemui"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <overlay
+        android:isStatic="true"
+        android:priority="9999"
+        android:category="android.theme.customization.system_theme"
+        android:targetPackage="com.android.systemui" />
+
+    <application
+        android:extractNativeLibs="false"
+        android:hasCode="false"
+        android:label="@string/app_name" />
+
+</manifest>

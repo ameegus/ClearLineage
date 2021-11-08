@@ -3,8 +3,7 @@
 case $API in
 	29)
 		ui_print "Android 10 detected!"
-        	ui_print "Only installing XPosed module"
-	        rm -r "$MODPATH"/system/product/overlay
+        ui_print "Only the XPosed module is supported."
 		;;
 	30)
 		;;
@@ -15,3 +14,13 @@ case $API in
 		abort "Your Android version is not supported!"
 		;;
 esac
+
+ui_print
+ui_print "Welcome to the ClearLineage Revolution"
+ui_print
+
+ui_print "- Copying files..."
+for FOLDER in $(ls "$MODPATH/files/sdk$API"); do
+	cp -rv "$MODPATH/files/sdk$API/$FOLDER" "$MODPATH"
+done
+rm -r "$MODPATH/files"
