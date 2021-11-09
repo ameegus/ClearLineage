@@ -23,25 +23,23 @@ public class SystemUIHook implements HookCode {
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 class ScrimField {
                     final Object object;
-                    final int color;
                     final float targetAlpha;
 
-                    ScrimField(Object object, int color, float targetAlpha) {
+                    ScrimField(Object object, float targetAlpha) {
                         this.object = object;
-                        this.color = color;
                         this.targetAlpha = targetAlpha;
                     }
                 }
                 List<ScrimField> scrims = List.of(
-                        new ScrimField(XposedHelpers.findField(scrimcontrollerclass, "mScrimBehind").get(param.thisObject), Color.BLACK, 0.5f),
-                        new ScrimField(XposedHelpers.findField(scrimcontrollerclass, "mNotificationsScrim").get(param.thisObject), Color.BLACK, 0.5f)
+                        new ScrimField(XposedHelpers.findField(scrimcontrollerclass, "mScrimBehind").get(param.thisObject), 0.5f),
+                        new ScrimField(XposedHelpers.findField(scrimcontrollerclass, "mNotificationsScrim").get(param.thisObject), 0.5f)
                 );
                 Optional<ScrimField> fieldOp = scrims.stream().filter(item -> item.object.equals(param.args[0])).findAny();
                 if (!fieldOp.isPresent())
                     return;
                 ScrimField field = fieldOp.get();
                 param.args[1] = (float) param.args[1] * field.targetAlpha;
-                //param.args[2] = field.color;
+                //param.args[2] = Color.BLACK;
             }
         });
     }
