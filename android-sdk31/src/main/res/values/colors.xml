@@ -7,15 +7,5 @@
     <!--<color name="transparent_white">@android:color/transparent</color>-->
     <!--<color name="transparent_black">@android:color/transparent</color>-->
     <color name="window_background">#50ffffff</color>
-    <color name="qs_tile_color">#ffffff</color>
-    <color name="qs_panel_background">#a0ffffff</color>
-
-    <!-- system colors -->
-    <color name="primary_device_default_dark">@color/transparent_white</color>
-    <color name="primary_device_default_settings">@color/transparent_white</color>
-    <color name="primary_dark_device_default_dark">@color/transparent_white</color>
-    <color name="primary_dark_device_default_settings">@color/transparent_white</color>
-
-    <color name="notification_material_background_color">@color/transparent_white</color>
 
 </resources>
