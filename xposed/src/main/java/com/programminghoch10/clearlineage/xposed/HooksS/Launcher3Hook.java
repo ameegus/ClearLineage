@@ -3,6 +3,8 @@ package com.programminghoch10.clearlineage.xposed.HooksS;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
 
 import com.programminghoch10.clearlineage.xposed.HookCode;
 
@@ -20,7 +22,11 @@ public class Launcher3Hook implements HookCode {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 int prevcolor = (int) param.args[0];
-                if (prevcolor == Color.TRANSPARENT) return;
+                // if the color is an transparent white or black, it probably comes from our overlays, so we don't change it
+                if (prevcolor == Color.TRANSPARENT
+                        || (prevcolor | 0xFF000000) == Color.WHITE
+                        || (prevcolor | 0xFF000000) == Color.BLACK)
+                    return;
                 int prevalpha = Color.alpha(prevcolor);
                 // could use provided color, but that is an ugly grey and transparent black or white looks better
                 Field mContext = XposedHelpers.findField(scrimviewclass, "mContext");
@@ -33,6 +39,15 @@ public class Launcher3Hook implements HookCode {
             }
         });
         Class<?> allappscontainerview = XposedHelpers.findClass("com.android.launcher3.allapps.AllAppsContainerView", lpparam.classLoader);
+        XposedHelpers.findAndHookConstructor(allappscontainerview, Context.class, AttributeSet.class, int.class, new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                Field mNavBarScrimPaintField = XposedHelpers.findField(allappscontainerview, "mNavBarScrimPaint");
+                Paint p = new Paint();
+                p.setColor(Color.TRANSPARENT);
+                mNavBarScrimPaintField.set(param.thisObject, p);
+            }
+        });
         XposedHelpers.findAndHookMethod(allappscontainerview, "updateHeaderScroll", int.class, XC_MethodReplacement.DO_NOTHING);
     }
 }
