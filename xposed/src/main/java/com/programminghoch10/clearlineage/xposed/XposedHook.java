@@ -14,6 +14,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import de.robv.android.xposed.callbacks.XCallback;
 
 public class XposedHook implements IXposedHookLoadPackage, IXposedHookInitPackageResources, IXposedHookZygoteInit {
+    public static String MODULE_PATH = null;
+
     @SuppressLint("ObsoleteSdkInt")
     private static boolean isAndroidVersionSupported() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || Build.VERSION.SDK_INT > Build.VERSION_CODES.S) {
@@ -51,5 +53,6 @@ public class XposedHook implements IXposedHookLoadPackage, IXposedHookInitPackag
         if (!isAndroidVersionSupported()) return;
         if (!startupParam.startsSystemServer) return;
         XposedBridge.log("Zygote System Init");
+        MODULE_PATH = startupParam.modulePath;
     }
 }
