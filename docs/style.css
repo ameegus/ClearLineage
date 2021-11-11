@@ -20,6 +20,29 @@ h3 {
   margin: 2px;
 }
 
+h1#title {
+  font-size: 300%;
+  transition: font-size 2s;
+}
+
+h1#title:hover {
+  font-size: 350%;
+  transition: font-size 1s;
+  transition-timing-function: ease-out;
+}
+
+a {
+  color: currentColor;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+}
+
+a:hover {
+  text-decoration-line: underline;
+  text-decoration-color: currentColor;
+  transition: text-decoration-color 50ms;
+}
+
 body #head {
   text-align: center;
 }

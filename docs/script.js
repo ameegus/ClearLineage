@@ -13,6 +13,18 @@ Array.prototype.getSafe = function (index) {
   return this[index];
 };
 
+let motds = [
+  "Transparency for LineageOS",
+  "Transparency since R",
+  "Fixing Google's design since S",
+  "Enhancing design since R"
+];
+
+function newMOTD() {
+  getel("motd").innerText = motds[Math.floor(Math.random() * motds.length)];
+}
+newMOTD();
+
 let initialInnerHTMLs = {};
 function renderHandlebars(element, params) {
   if (initialInnerHTMLs[element.id] == null) {
