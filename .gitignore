@@ -1,3 +1,5 @@
+magiskmodule/module.prop
+
 # Built application files
 *.apk
 *.aar
