@@ -202,7 +202,8 @@ function displayImage(img) {
     el.classList.remove("visible");
   } else {
     el.classList.add("visible");
-    let imgText = img.split(".")[0];
+    let imgData = img.split(".")[0].split("_");
+    let imgText = imgData[1] + " on " + imgData[2] + " @ LineageOS " + imgData[0];
     renderHandlebars(el, { img, imgText });
   }
 }
