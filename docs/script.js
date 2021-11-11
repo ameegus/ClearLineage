@@ -86,14 +86,14 @@ function updatePictures() {
 
   renderHandlebars(getel("images"), {
     pictures: pictureSetBefore.map((e) => ({
-      url: e,
+      url: "images/" + e,
       remove: pictures.includes(e) ? "" : "fade-out",
     })),
   });
   setTimeout(() => {
     renderHandlebars(getel("images"), {
       pictures: pictures.map((e) => ({
-        url: e,
+        url: "images/" + e,
         remove: pictureSetBefore.includes(e) ? "" : "fade-in",
       })),
     });
@@ -202,7 +202,7 @@ function displayImage(img) {
     el.classList.remove("visible");
   } else {
     el.classList.add("visible");
-    let imgData = img.split(".")[0].split("_");
+    let imgData = img.split("/")[1].split(".")[0].split("_");
     let imgText = imgData[1] + " on " + imgData[2] + " @ LineageOS " + imgData[0];
     renderHandlebars(el, { img, imgText });
   }
