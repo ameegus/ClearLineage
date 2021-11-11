@@ -126,25 +126,33 @@ function getPictures() {
   }
   let result = [];
 
+  let versionfilter = [];
+  let categoryfilter = [];
+  let devicefilter = [];
   for (let filter of filtersSelected) {
-    for (let picture of pictures) {
-      let imageAttributes = picture.split(".")[0].split("_");
-      let keyImageAttributeIndex = 0;
-      switch (filter.key) {
-        default:
-        case "version":
-          keyImageAttributeIndex = 0;
-          break;
-        case "category":
-          keyImageAttributeIndex = 1;
-          break;
-        case "device":
-          keyImageAttributeIndex = 2;
-          break;
-      }
-      if (imageAttributes[keyImageAttributeIndex] == filter.value) {
-        result.push(picture);
-      }
+    switch (filter.key) {
+      default:
+      case "version":
+        versionfilter.push(filter.value);
+        break;
+      case "category":
+        categoryfilter.push(filter.value);
+        break;
+      case "device":
+        devicefilter.push(filter.value);
+        break;
+    }
+  }
+  if (versionfilter.length == 0) versionfilter = versions;
+  if (categoryfilter.length == 0) categoryfilter = categories;
+  if (devicefilter.length == 0) devicefilter = devices;
+
+  for (let picture of pictures) {
+    let imageAttributes = picture.split(".")[0].split("_")
+    if (versionfilter.includes(imageAttributes[0])
+      && categoryfilter.includes(imageAttributes[1])
+      && devicefilter.includes(imageAttributes[2])) {
+      result.push(picture);
     }
   }
 
