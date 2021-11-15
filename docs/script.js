@@ -36,8 +36,12 @@ let motds = [
   "Enhancing design since R"
 ];
 
+let motd = null;
 function newMOTD() {
-  getel("motd").innerText = motds[Math.floor(Math.random() * motds.length)];
+  let newMotd = motds[Math.floor(Math.random() * motds.length)];
+  if (newMotd === motd) return newMOTD();
+  motd = newMotd
+  getel("motd").innerText = newMotd;
 }
 newMOTD();
 
