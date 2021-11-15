@@ -252,7 +252,7 @@ body.dark .table .row:hover {
   display: flex;
   flex-wrap: wrap;
   width: calc(100% - 96px);
-  margin: 48px;
+  margin: 24px;
   --height: 340; /* Minimal row height */
   --ratio: 1; /* Default aspect ratio for photos that are not loaded yet */
 }
@@ -340,7 +340,7 @@ body.dark #theme-switcher .light-theme {
 
 /* #region header */
 #head {
-  margin-bottom: 48px;
+  margin-bottom: 24px;
   margin-top: 24px;
 }
 /* #endregion */
