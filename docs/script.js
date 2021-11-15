@@ -233,12 +233,16 @@ const transposeTable = (tbody, newContainerType = "tbody") => {
   tbody.parentElement.removeChild(tbody);
 };
 
+let displayedImage = null;
+
 function displayImage(img) {
   let el = getel("display-image");
-  if (img === null) {
+  if (img == null) {
     el.classList.remove("visible");
+    displayedImage = null;
   } else {
     el.classList.add("visible");
+    displayedImage = img.split("/")[1];
     let imgData = img.split("/")[1].split(".")[0].split("_");
     let imgText = imgData[1] + " on " + imgData[2] + " @ LineageOS " + imgData[0];
     renderHandlebars(el, { img, imgText });
@@ -256,3 +260,28 @@ function darkTheme(value) {
 if (document.cookie == "darkTheme=false") {
   darkTheme(false);
 }
+
+function changeDisplayedImage(diff) {
+  if (displayedImage == null) return;
+  if (pictureSetBefore.length <= 0) return;
+  let index = pictureSetBefore.indexOf(displayedImage);
+  if (index < 0 || index >= pictures.length) return;
+  let newIndex = (pictureSetBefore.length + index + diff) % pictureSetBefore.length;
+  displayImage("images/" + pictureSetBefore[newIndex]);
+}
+
+document.onkeydown = function (event) {
+  switch (event.keyCode) {
+    case 27:
+      // escape
+      displayImage(null);
+    case 37:
+      // left
+      changeDisplayedImage(-1);
+      break;
+    case 39:
+      // right
+      changeDisplayedImage(1);
+      break;
+  }
+};
