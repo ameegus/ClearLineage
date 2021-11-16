@@ -11,6 +11,10 @@ for SDK in 30 31; do
 done
 mkdir -p magiskmodule/system/app/clearlineage
 cp -v xposed/build/outputs/apk/release/xposed-release.apk magiskmodule/system/app/clearlineage/ClearLineage-xposed.apk
+mkdir -p magiskmodule/system/product/overlay
+for ACCENT in $(ls accent); do
+    cp -v accent/$ACCENT/build/outputs/apk/release/$ACCENT-release.apk magiskmodule/system/product/overlay/ClearLineage-Accent-$ACCENT.apk
+done
 VERSION=$(git log -1 --pretty=%h)
 #VERSION=$(date +%Y%m%d-%H%M%S)
 VERSIONCODE=$(git rev-list --count HEAD)
