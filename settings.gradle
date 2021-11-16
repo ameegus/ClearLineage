@@ -8,9 +8,9 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ClearLineage"
-include ':android-sdk30'
-include ':android-sdk31'
-include ':systemui-sdk30'
-include ':systemui-sdk31'
+include ':android:sdk30'
+include ':android:sdk31'
+include ':systemui:sdk30'
+include ':systemui:sdk31'
 include ':xposed'
 include ':accent:lime'
