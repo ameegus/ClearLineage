@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="notification_legacy_background_color">#9000</color>
+    <color name="notification_material_background_color">#9000</color>
+    <color name="notification_material_background_dark_color">#a000</color>
+    <color name="notification_material_background_dimmed_color">#8000</color>
+    <color name="notification_shade_background_color">#1000</color>
+
+</resources>

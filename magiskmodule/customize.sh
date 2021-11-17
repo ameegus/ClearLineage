@@ -2,8 +2,7 @@
 
 case $API in
 	29)
-		ui_print "Android 10 detected!"
-        ui_print "Only limited functionality is available!"
+		ui_print "Android 10 support is experimental!"
 		;;
 	30)
 		;;

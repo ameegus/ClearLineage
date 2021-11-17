@@ -3,7 +3,7 @@ rm -v ClearLineage.zip
 ./gradlew assemble || exit 1
 rm -r magiskmodule/system
 rm -r magiskmodule/files
-for SDK in 30 31; do
+for SDK in 29 30 31; do
     mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay
     for TARGET in android systemui; do
         cp -v $TARGET/sdk$SDK/build/outputs/apk/release/sdk$SDK-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/ClearLineage-$TARGET-sdk$SDK.apk
