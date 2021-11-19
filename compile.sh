@@ -15,6 +15,10 @@ mkdir -p magiskmodule/system/product/overlay
 for ACCENT in $(ls accent); do
     cp -v accent/$ACCENT/build/outputs/apk/release/$ACCENT-release.apk magiskmodule/system/product/overlay/ClearLineage-Accent-$ACCENT.apk
 done
+for SDK in 29 30 31; do
+    mkdir magiskmodule/files/sdk$SDK/system/product/overlay/LineageBlackTheme
+    cp -v emptyblacktheme/sdk$SDK/build/outputs/apk/release/sdk$SDK-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/LineageBlackTheme/LineageBlackTheme.apk
+done
 VERSION=$(git log -1 --pretty=%h)
 #VERSION=$(date +%Y%m%d-%H%M%S)
 VERSIONCODE=$(git rev-list --count HEAD)

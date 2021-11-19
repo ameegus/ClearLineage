@@ -17,8 +17,8 @@ but it won't work as well and is not recommended.
 
 ### Compatibility
 
-* On LineageOS 17 only the XPosed module is supported and thus only slight changes can be observed.
-* On LineageOS 18 you have to disable the LineageOS black theme in order for the system to select the ClearLineage colors correctly.
+* On LineageOS 17 the Theme is still in development
+* On LineageOS 18 the Theme is working perfectly
 * On LineageOS 19 the whole system looks different, but hey, someone gotta fix Google's bad design choices `¯\_(ツ)_/¯`
 
 ### Installation
