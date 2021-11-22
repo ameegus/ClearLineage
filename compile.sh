@@ -6,6 +6,7 @@ rm -r magiskmodule/files
 for SDK in 29 30 31; do
     mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay
     for TARGET in android systemui; do
+        #if [ ! -d $TARGET/sdk$SDK ]; then continue; fi;
         cp -v $TARGET/sdk$SDK/build/outputs/apk/release/sdk$SDK-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/ClearLineage-$TARGET-sdk$SDK.apk
     done
 done
@@ -15,10 +16,8 @@ mkdir -p magiskmodule/system/product/overlay
 for ACCENT in $(ls accent); do
     cp -v accent/$ACCENT/build/outputs/apk/release/$ACCENT-release.apk magiskmodule/system/product/overlay/ClearLineage-Accent-$ACCENT.apk
 done
-for SDK in 29 30 31; do
-    mkdir magiskmodule/files/sdk$SDK/system/product/overlay/LineageBlackTheme
-    cp -v emptyblacktheme/sdk$SDK/build/outputs/apk/release/sdk$SDK-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/LineageBlackTheme/LineageBlackTheme.apk
-done
+mkdir -p magiskmodule/files/all/system/product/overlay/LineageBlackTheme
+cp -v emptyblacktheme/build/outputs/apk/release/emptyblacktheme-release.apk magiskmodule/files/all/system/product/overlay/LineageBlackTheme/LineageBlackTheme.apk
 VERSION=$(git log -1 --pretty=%h)
 #VERSION=$(date +%Y%m%d-%H%M%S)
 VERSIONCODE=$(git rev-list --count HEAD)

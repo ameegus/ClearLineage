@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    compileSdk 29
+    compileSdk 31
 
     defaultConfig {
         applicationId "org.lineageos.overlay.customization.blacktheme"
         minSdk 29
-        targetSdk 29
+        targetSdk 31
         versionCode 1
         versionName "1.0"
     }

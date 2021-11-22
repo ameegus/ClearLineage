@@ -24,4 +24,7 @@ ui_print "- Copying files..."
 for FOLDER in $(ls "$MODPATH/files/sdk$API"); do
 	cp -rv "$MODPATH/files/sdk$API/$FOLDER" "$MODPATH"
 done
+for FOLDER in $(ls "$MODPATH/files/all"); do
+	cp -rv "$MODPATH/files/all/$FOLDER" "$MODPATH"
+done
 rm -r "$MODPATH/files"
