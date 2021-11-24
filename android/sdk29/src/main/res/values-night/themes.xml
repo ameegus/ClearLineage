@@ -2,14 +2,12 @@
 <resources>
 
     <style name="Theme.DeviceDefault.QuickSettings" parent="@*android:style/Theme.DeviceDefault">
+
         <!-- QS / volume panel background -->
-        <item name="android:colorBackgroundFloating">#70000000</item>
+        <item name="android:colorBackgroundFloating">#8000</item>
 
         <!-- qs tile enabled icon color -->
         <item name="android:colorPrimary">#000000</item>
-
-        <!-- volume background -->
-        <item name="android:panelColorBackground">#00f</item>
 
     </style>
 

@@ -5,6 +5,7 @@ import android.os.Build;
 import android.view.View;
 
 import com.programminghoch10.clearlineage.xposed.HookCode;
+import com.programminghoch10.clearlineage.xposed.HookRes;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

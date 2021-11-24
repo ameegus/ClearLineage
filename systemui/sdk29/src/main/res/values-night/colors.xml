@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- the transition when opening tile details -->
+    <color name="qs_detail_transition">@android:color/black</color>
+
     <color name="notification_legacy_background_color">#9000</color>
     <color name="notification_material_background_color">#9000</color>
     <color name="notification_material_background_dark_color">#a000</color>
