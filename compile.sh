@@ -1,7 +1,6 @@
 #!/bin/bash
-rm -v ClearLineage.zip
+if [ -f "ClearLineage.zip" ]; then rm -v ClearLineage.zip; fi
 ./gradlew assemble || exit 1
-rm -r magiskmodule/system
 rm -r magiskmodule/files
 for SDK in 29 30 31; do
     mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay
@@ -10,11 +9,11 @@ for SDK in 29 30 31; do
         cp -v $TARGET/sdk$SDK/build/outputs/apk/release/sdk$SDK-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/ClearLineage-$TARGET-sdk$SDK.apk
     done
 done
-mkdir -p magiskmodule/system/app/clearlineage
-cp -v xposed/build/outputs/apk/release/xposed-release.apk magiskmodule/system/app/clearlineage/ClearLineage-xposed.apk
-mkdir -p magiskmodule/system/product/overlay
+mkdir -p magiskmodule/files/all/system/app/clearlineage
+cp -v xposed/build/outputs/apk/release/xposed-release.apk magiskmodule/files/all/system/app/clearlineage/ClearLineage-xposed.apk
+mkdir -p magiskmodule/files/all/system/product/overlay
 for ACCENT in $(ls accent); do
-    cp -v accent/$ACCENT/build/outputs/apk/release/$ACCENT-release.apk magiskmodule/system/product/overlay/ClearLineage-Accent-$ACCENT.apk
+    cp -v accent/$ACCENT/build/outputs/apk/release/$ACCENT-release.apk magiskmodule/files/all/system/product/overlay/ClearLineage-Accent-$ACCENT.apk
 done
 mkdir -p magiskmodule/files/all/system/product/overlay/LineageBlackTheme
 cp -v emptyblacktheme/build/outputs/apk/release/emptyblacktheme-release.apk magiskmodule/files/all/system/product/overlay/LineageBlackTheme/LineageBlackTheme.apk
