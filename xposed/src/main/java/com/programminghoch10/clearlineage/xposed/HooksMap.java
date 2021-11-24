@@ -30,19 +30,32 @@ public class HooksMap {
         RES,  // hooking resources
     }
 
-    public static MultiKeyMap<Class<?>> map = new MultiKeyMap<>();
+    static class HookEntry {
+        HOOKTYPE hooktype;
+        int sdk;
+        String packageName;
+        Class<? extends Hook<?>> hookClass;
+        HookEntry(HOOKTYPE hooktype, int sdk, String packageName, Class<? extends Hook<?>> hookClass) {
+            this.hooktype = hooktype;
+            this.sdk = sdk;
+            this.packageName = packageName;
+            this.hookClass = hookClass;
+        }
+    }
+
+    public static List<HookEntry> list = new LinkedList<>();
     static {
         // Q uses same hooks as R
-        map.put(com.programminghoch10.clearlineage.xposed.HooksR.SystemUIHook.class, HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_SYSTEMUI);
-        map.put(com.programminghoch10.clearlineage.xposed.HooksR.Launcher3Hook.class, HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_LAUNCHER3);
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksR.SystemUIHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksR.Launcher3Hook.class));
 
         // R
-        map.put(com.programminghoch10.clearlineage.xposed.HooksR.SystemUIHook.class, HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_SYSTEMUI);
-        map.put(com.programminghoch10.clearlineage.xposed.HooksR.Launcher3Hook.class, HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_LAUNCHER3);
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksR.SystemUIHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksR.Launcher3Hook.class));
 
         // S
-        map.put(com.programminghoch10.clearlineage.xposed.HooksS.SystemUIHook.class, HOOKTYPE.CODE, Build.VERSION_CODES.S, PACKAGE_SYSTEMUI);
-        map.put(com.programminghoch10.clearlineage.xposed.HooksS.Launcher3Hook.class, HOOKTYPE.CODE, Build.VERSION_CODES.S, PACKAGE_LAUNCHER3);
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksS.SystemUIHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksS.Launcher3Hook.class));
     }
 
 }

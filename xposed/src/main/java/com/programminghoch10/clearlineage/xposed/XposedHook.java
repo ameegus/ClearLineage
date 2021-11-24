@@ -28,14 +28,20 @@ public class XposedHook implements IXposedHookLoadPackage, IXposedHookInitPackag
     private static void hook(HooksMap.HOOKTYPE hooktype, String packageName, XCallback.Param param) throws Exception {
         if (!isAndroidVersionSupported()) return;
         if (!HooksMap.supportedPackages.contains(packageName)) return;
-        if (HooksMap.map.containsKey(hooktype, Build.VERSION.SDK_INT, packageName)) {
-            XposedBridge.log("Hooking " + hooktype + "/v" + Build.VERSION.SDK_INT + "/" + packageName);
-            Class<?> hook = HooksMap.map.get(hooktype, Build.VERSION.SDK_INT, packageName);
-            Method hookMethod = hook.getMethod("hook", param.getClass());
-            hookMethod.invoke(hook.newInstance(), param);
-        } else {
-            XposedBridge.log("Can't find hook " + hooktype + "/v" + Build.VERSION.SDK_INT + "/" + packageName);
-        }
+        HooksMap.list.stream()
+                .filter(hookEntry -> hookEntry.sdk == Build.VERSION.SDK_INT)
+                .filter(hookEntry -> hookEntry.packageName.equals(packageName))
+                .filter(hookEntry -> hookEntry.hooktype.equals(hooktype))
+                .forEach(hookEntry -> {
+                    XposedBridge.log("Hooking " + hooktype + "/v" + hookEntry.sdk + "/" + packageName);
+                    Class<?> hook = hookEntry.hookClass;
+                    try {
+                        Method hookMethod = hook.getMethod("hook", param.getClass());
+                        hookMethod.invoke(hook.newInstance(), param);
+                    } catch (Exception e) {
+                        XposedBridge.log(e);
+                    }
+                });
     }
 
     @Override
