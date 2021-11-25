@@ -30,9 +30,20 @@ but it won't work as well and is not recommended.
 1. Reboot again
 1. You should have the full ClearLineage theme active now
 
+### Blur
+
+This module sets the system prop `ro.surface_flinger.supports_background_blur=1`, 
+which enables blur effects on your system.
+
+Blur is enabled by default, but it might cause lags.
+You can disable blur by going into the device developer settings 
+and disabling the option `Allow window-level blurs`.
+
 ### Bugs
 
 With Android 12 changing all the time currently, expect there to be inconsistencies.
+
+Do not complain about lags while [Blur](#blur) is enabled.
 
 You can report bugs, but I can't guarantuee I can fix them, especially if I can't replicate them.
 
