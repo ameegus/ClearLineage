@@ -11,9 +11,11 @@ for SDK in 29 30 31; do
 done
 mkdir -p magiskmodule/files/all/system/app/clearlineage
 cp -v xposed/build/outputs/apk/release/xposed-release.apk magiskmodule/files/all/system/app/clearlineage/ClearLineage-xposed.apk
-mkdir -p magiskmodule/files/all/system/product/overlay
-for ACCENT in $(ls accent); do
-    cp -v accent/$ACCENT/build/outputs/apk/release/$ACCENT-release.apk magiskmodule/files/all/system/product/overlay/ClearLineage-Accent-$ACCENT.apk
+for SDK in 29 30; do
+    mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay
+    for ACCENT in $(ls accent); do
+        cp -v accent/$ACCENT/build/outputs/apk/release/$ACCENT-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/ClearLineage-Accent-$ACCENT.apk
+    done
 done
 mkdir -p magiskmodule/files/all/system/product/overlay/LineageBlackTheme
 cp -v emptyblacktheme/build/outputs/apk/release/emptyblacktheme-release.apk magiskmodule/files/all/system/product/overlay/LineageBlackTheme/LineageBlackTheme.apk
@@ -31,7 +33,5 @@ versionCode=$VERSIONCODE
 author=$AUTHOR
 description=$DESC" > magiskmodule/module.prop
 cd magiskmodule
-#sed -i "s/version=.*/version=$VERSION/g" module.prop
-#sed -i "s/versionCode=.*/versionCode=$VERSIONCODE/g" module.prop
 zip -q -r -0 ../ClearLineage.zip *
 cd ..
