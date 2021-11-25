@@ -31,7 +31,7 @@ public class XposedHook implements IXposedHookLoadPackage, IXposedHookInitPackag
         HooksMap.list.stream()
                 .filter(hookEntry -> hookEntry.sdk == Build.VERSION.SDK_INT)
                 .filter(hookEntry -> hookEntry.packageName.equals(packageName))
-                .filter(hookEntry -> hookEntry.hooktype.equals(hooktype))
+                .filter(hookEntry -> hookEntry.hooktype.equals(hooktype) || hookEntry.hooktype.equals(HooksMap.HOOKTYPE.BOTH))
                 .forEach(hookEntry -> {
                     XposedBridge.log("Hooking " + hooktype + "/v" + hookEntry.sdk + "/" + packageName);
                     Class<?> hook = hookEntry.hookClass;
@@ -58,7 +58,6 @@ public class XposedHook implements IXposedHookLoadPackage, IXposedHookInitPackag
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) throws Throwable {
         if (!isAndroidVersionSupported()) return;
         if (!startupParam.startsSystemServer) return;
-        XposedBridge.log("Zygote System Init");
         MODULE_PATH = startupParam.modulePath;
     }
 }

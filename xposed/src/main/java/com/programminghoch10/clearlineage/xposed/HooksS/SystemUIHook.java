@@ -1,7 +1,6 @@
 package com.programminghoch10.clearlineage.xposed.HooksS;
 
 import android.annotation.TargetApi;
-import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 
