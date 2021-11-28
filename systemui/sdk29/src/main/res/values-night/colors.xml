@@ -10,4 +10,9 @@
     <color name="notification_material_background_dimmed_color">#8000</color>
     <color name="notification_shade_background_color">#1000</color>
 
+    <color name="global_actions_text">#fff</color>
+    <color name="global_actions_grid_background">#000</color>
+    <color name="global_actions_alert_text">#fff</color>
+    <color name="global_actions_separated_background">#e62817</color>
+
 </resources>
