@@ -10,26 +10,27 @@ import com.programminghoch10.clearlineage.xposed.HookCode;
 import java.lang.reflect.Field;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class Launcher3Hook implements HookCode {
     @Override
     public void hook(XC_LoadPackage.LoadPackageParam lpparam) throws Exception {
-        Class<?> scrimviewclass = XposedHelpers.findClass("com.android.launcher3.views.ScrimView", lpparam.classLoader);
-        XposedHelpers.findAndHookConstructor(scrimviewclass, Context.class, AttributeSet.class, new XC_MethodHook() {
+        Class<?> shelfscrimviewclass = XposedHelpers.findClass("com.android.quickstep.views.ShelfScrimView", lpparam.classLoader);
+        Field mEndAlpha = XposedHelpers.findField(shelfscrimviewclass, "mEndAlpha");
+        Field mEndScrim = XposedHelpers.findField(shelfscrimviewclass, "mEndScrim");
+        XposedHelpers.findAndHookConstructor(shelfscrimviewclass, Context.class, AttributeSet.class, new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                Field mEndScrim = XposedHelpers.findField(scrimviewclass, "mEndScrim");
-                //int prevcolor = mEndScrim.getInt(param.thisObject);
-				/*int prevcolor = ((Context)param.args[0]).getTheme().obtainStyledAttributes(new int[] {
-						android.R.attr.colorBackground
-				}).getColor(0, 0);*/
                 boolean night = (((Context) param.args[0]).getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
-                int prevcolor = night ? Color.BLACK : Color.WHITE;
-                int newcolor = (prevcolor & 0x00FFFFFF) | (0xa0 << 24);
-                mEndScrim.setInt(param.thisObject, newcolor);
+                mEndScrim.setInt(param.thisObject, night ? Color.BLACK : Color.WHITE);
+                mEndAlpha.setInt(param.thisObject, (int) (255 * (night ? 0.5f : 0.7f)));
             }
         });
+
+        XposedHelpers.findAndHookMethod("com.android.launcher3.uioverrides.states.OverviewState", lpparam.classLoader,
+                "getOverviewScrimAlpha", "com.android.launcher3.Launcher", XC_MethodReplacement.returnConstant(0.1f));
+
     }
 }
