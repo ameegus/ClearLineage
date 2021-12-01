@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="config_icon_mask" translatable="false">M100 30C100 13.4315 77.6142 0 50 0C22.3858 0 0 13.4315 0 30V70C0 86.5685 22.3858 100 50 100C77.6142 100 100 86.5685 100 70V30Z</string>
+    <bool name="config_useRoundIcon">false</bool>
+    <dimen name="config_dialogCornerRadius">8dp</dimen>
+    <dimen name="config_bottomDialogCornerRadius">16dp</dimen>
+</resources>

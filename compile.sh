@@ -11,10 +11,12 @@ for SDK in 29 30 31; do
 done
 mkdir -p magiskmodule/files/all/system/app/clearlineage
 cp -v xposed/build/outputs/apk/release/xposed-release.apk magiskmodule/files/all/system/app/clearlineage/ClearLineage-xposed.apk
-for SDK in 29 30; do
-    mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay
-    for ACCENT in $(ls accent); do
-        cp -v accent/$ACCENT/build/outputs/apk/release/$ACCENT-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/ClearLineage-Accent-$ACCENT.apk
+for OVERLAY in accent shape; do
+    for SDK in 29 30; do
+        mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay
+        for ITEM in $(ls $OVERLAY); do
+            cp -v $OVERLAY/$ITEM/build/outputs/apk/release/$ITEM-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/ClearLineage-$OVERLAY-$ITEM.apk
+        done
     done
 done
 mkdir -p magiskmodule/files/all/system/product/overlay/LineageBlackTheme
