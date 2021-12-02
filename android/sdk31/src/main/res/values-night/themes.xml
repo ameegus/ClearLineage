@@ -15,4 +15,9 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="Theme.DeviceDefault.NoActionBar" parent="Theme.DeviceDefault">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>
