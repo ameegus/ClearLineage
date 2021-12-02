@@ -49,5 +49,34 @@ public class Launcher3Hook implements HookCode {
             }
         });
         XposedHelpers.findAndHookMethod(allappscontainerview, "updateHeaderScroll", int.class, XC_MethodReplacement.DO_NOTHING);
+
+        Class<?> depthcontrollerclass = XposedHelpers.findClass("com.android.launcher3.statehandlers.DepthController", lpparam.classLoader);
+        final boolean[] systemAppLaunch = {false};
+        XposedHelpers.findAndHookMethod(depthcontrollerclass, "setIsInLaunchTransition", boolean.class, new XC_MethodReplacement() {
+            @Override
+            protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                systemAppLaunch[0] = (boolean) param.args[0];
+                return null;
+            }
+        });
+        Class<?> launcherstateclass = XposedHelpers.findClass("com.android.launcher3.LauncherState", lpparam.classLoader);
+        Object overviewstate = XposedHelpers.getStaticObjectField(launcherstateclass, "OVERVIEW");
+        Object normalstate = XposedHelpers.getStaticObjectField(launcherstateclass, "NORMAL");
+        Class<?> statemanagerclass = XposedHelpers.findClass("com.android.launcher3.statemanager.StateManager", lpparam.classLoader);
+        Field mLauncherField = XposedHelpers.findField(depthcontrollerclass, "mLauncher");
+        XposedHelpers.findAndHookMethod(depthcontrollerclass, "dispatchTransactionSurface", float.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                Object mLauncher = mLauncherField.get(param.thisObject);
+                Object stateManager = XposedHelpers.findMethodExact(mLauncherField.getType(), "getStateManager").invoke(mLauncher);
+                Object state = XposedHelpers.findMethodExact(statemanagerclass, "getState").invoke(stateManager);
+                Object stablestate = XposedHelpers.findMethodExact(statemanagerclass, "getCurrentStableState").invoke(stateManager);
+                boolean overviewstateinvolved = state.equals(overviewstate) || stablestate.equals(overviewstate);
+                if (overviewstateinvolved || systemAppLaunch[0])
+                    XposedHelpers.setBooleanField(param.thisObject, "mBlurDisabledForAppLaunch", true);
+                if (!overviewstateinvolved && stablestate.equals(normalstate) && !systemAppLaunch[0])
+                    XposedHelpers.setBooleanField(param.thisObject, "mBlurDisabledForAppLaunch", false);
+            }
+        });
     }
 }
