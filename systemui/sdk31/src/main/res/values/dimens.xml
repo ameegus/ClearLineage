@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="global_actions_lite_button_ring_width">1dp</dimen>
+
     <!-- unaltered values, used for overlaying drawables -->
     <dimen name="qs_footer_action_corner_radius">20dp</dimen>
 </resources>
