@@ -1,6 +1,7 @@
 package com.programminghoch10.clearlineage.xposed.HooksS;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.view.View;
 
@@ -14,6 +15,9 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class SystemUIHook implements HookCode {
+
+    private static final float QS_TILE_UNAVAILABLE_ALPHA = 0.5f;
+
     public void hook(XC_LoadPackage.LoadPackageParam lpparam) throws Exception {
         Class<?> scrimcontrollerclass = XposedHelpers.findClass("com.android.systemui.statusbar.phone.ScrimController", lpparam.classLoader);
         XposedHelpers.findAndHookMethod(scrimcontrollerclass, "updateScrimColor", View.class, float.class, int.class, new XC_MethodHook() {
@@ -39,6 +43,21 @@ public class SystemUIHook implements HookCode {
                 ScrimField field = fieldOp.get();
                 param.args[1] = (float) param.args[1] * field.targetAlpha;
                 //param.args[2] = Color.BLACK;
+            }
+        });
+
+        Class<?> qstileviewimpl = XposedHelpers.findClass("com.android.systemui.qs.tileimpl.QSTileViewImpl", lpparam.classLoader);
+        XposedHelpers.findAndHookConstructor(qstileviewimpl, Context.class, "com.android.systemui.plugins.qs.QSIconView", boolean.class, new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                final String[] unavailableFields = new String[]{"colorLabelUnavailable", "colorSecondaryLabelUnavailable"};
+                for (String field : unavailableFields) {
+                    int prevcolor = XposedHelpers.getIntField(param.thisObject, field);
+                    int newcolor = prevcolor & 0xFFFFFF | ((int) (QS_TILE_UNAVAILABLE_ALPHA * 0xFF) << 4 * 6);
+                    XposedHelpers.setIntField(param.thisObject, field, newcolor);
+                }
+                XposedHelpers.setIntField(param.thisObject, "colorUnavailable", (int) (QS_TILE_UNAVAILABLE_ALPHA * 0.5f * 0xFF) << 4 * 6);
+                XposedHelpers.setIntField(param.thisObject, "colorInactive", 0x80000000);
             }
         });
     }
