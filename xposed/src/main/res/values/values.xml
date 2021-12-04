@@ -3,5 +3,6 @@
     <string-array name="scope">
         <item>com.android.systemui</item>
         <item>com.android.launcher3</item>
+        <item>com.android.settings</item>
     </string-array>
 </resources>
