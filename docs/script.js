@@ -31,9 +31,9 @@ function shuffle(a) {
 
 let motds = [
   "Transparency for LineageOS",
-  "Transparency since R",
+  "Transparency since Q",
   "Fixing Google's design since S",
-  "Enhancing design since R"
+  "Enhancing design since Q"
 ];
 
 let motd = null;
@@ -63,6 +63,9 @@ let pictures = [];
 let versions = [];
 let categories = [];
 let devices = [];
+let blurs = [];
+let themes = [];
+let authors = [];
 let tableRows = [];
 let filtersSelected = [];
 
@@ -77,16 +80,24 @@ function buildPage(devicesjson) {
     versions.push(split[0]);
     categories.push(split[1]);
     devices.push(split[2]);
+    blurs.push(split[3]);
+    themes.push(split[4]);
+    authors.push(split[5]);
   }
-  versions = removeDuplicates(versions);
-  categories = removeDuplicates(categories);
-  devices = removeDuplicates(devices);
+  versions = removeDuplicates(versions).sort();
+  categories = removeDuplicates(categories).sort();
+  devices = removeDuplicates(devices).sort();
+  blurs = removeDuplicates(blurs).sort();
+  themes = removeDuplicates(themes).sort();
+  authors = removeDuplicates(authors).sort();
 
   for (let i = 0; i < Math.max(versions.length, categories.length, devices.length); i++) {
     tableRows.push({
       version: versions.getSafe(i),
       category: categories.getSafe(i),
       device: devices.getSafe(i),
+      blur: blurs.getSafe(i),
+      theme: themes.getSafe(i),
     });
   }
 
@@ -162,6 +173,9 @@ function getPictures() {
   let versionfilter = [];
   let categoryfilter = [];
   let devicefilter = [];
+  let blurfilter = [];
+  let themefilter = [];
+  let authorfilter = [];
   for (let filter of filtersSelected) {
     switch (filter.key) {
       default:
@@ -174,29 +188,37 @@ function getPictures() {
       case "device":
         devicefilter.push(filter.value);
         break;
+      case "blur":
+        blurfilter.push(filter.value);
+        break;
+      case "theme":
+        themefilter.push(filter.value);
+        break;
+      case "author":
+        authorfilter.push(filter.value);
+        break;
     }
   }
   if (versionfilter.length == 0) versionfilter = versions;
   if (categoryfilter.length == 0) categoryfilter = categories;
   if (devicefilter.length == 0) devicefilter = devices;
+  if (blurfilter.length == 0) blurfilter = blurs;
+  if (themefilter.length == 0) themefilter = themes;
+  if (authorfilter.length == 0) authorfilter = authors;
 
   for (let picture of pictures) {
     let imageAttributes = picture.split(".")[0].split("_")
     if (versionfilter.includes(imageAttributes[0])
       && categoryfilter.includes(imageAttributes[1])
-      && devicefilter.includes(imageAttributes[2])) {
+      && devicefilter.includes(imageAttributes[2])
+      && blurfilter.includes(imageAttributes[3])
+      && themefilter.includes(imageAttributes[4])
+      && authorfilter.includes(imageAttributes[5])) {
       result.push(picture);
     }
   }
 
   return removeDuplicates(result);
-}
-
-function buildTable() {
-  for (let version of versions) getel("versions").appendChild(createTableElement(version));
-  for (let category of categories) getel("categories").appendChild(createTableElement(category));
-  for (let device of devices) getel("devices").appendChild(createTableElement(device));
-  transposeTable(document.querySelector("#form table tbody"));
 }
 
 function createTableElement(text) {
@@ -248,7 +270,7 @@ function displayImage(img) {
     el.classList.add("visible");
     displayedImage = img.split("/")[1];
     let imgData = img.split("/")[1].split(".")[0].split("_");
-    let imgText = imgData[1] + " on " + imgData[2] + " @ LineageOS " + imgData[0];
+    let imgText = imgData[1] + " on " + imgData[2] + " @ LineageOS " + imgData[0] + " (" + imgData[4] + " theme) by " + imgData[5];
     renderHandlebars(el, { img, imgText });
   }
 }

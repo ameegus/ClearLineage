@@ -46,10 +46,12 @@
         <div>Versions</div>
         <div>Categories</div>
         <div>Devices</div>
+        <div>Blur</div>
+        <div>Theme</div>
       </div> {{#each tableRows}} <div class="row">
         <div class="item"> {{#if this.version}} <input type="checkbox" id="checkbox-{{ this.version }}"
                  value="{{ this.version }}" oninput="updateFilters(this, 'version', '{{ this.version }}')" />
-          <label class="noselect" for="checkbox-{{ this.version }}">{{ this.version }}</label> {{/if}}
+          <label class="noselect" for="checkbox-{{ this.version }}">LineageOS {{ this.version }}</label> {{/if}}
         </div>
         <div class="item"> {{#if this.category}} <input type="checkbox" id="checkbox-{{ this.category }}"
                  value="{{ this.category }}" oninput="updateFilters(this, 'category', '{{ this.category }}')" />
@@ -58,6 +60,14 @@
         <div class="item"> {{#if this.device}} <input type="checkbox" id="checkbox-{{ this.device }}"
                  value="{{ this.device }}" oninput="updateFilters(this, 'device', '{{ this.device }}')" />
           <label class="noselect" for="checkbox-{{ this.device }}">{{ this.device }}</label> {{/if}}
+        </div>
+        <div class="item"> {{#if this.blur}} <input type="checkbox" id="checkbox-{{ this.blur }}"
+                 value="{{ this.blur }}" oninput="updateFilters(this, 'blur', '{{ this.blur }}')" />
+          <label class="noselect" for="checkbox-{{ this.blur }}">{{ this.blur }}</label> {{/if}}
+        </div>
+        <div class="item"> {{#if this.theme}} <input type="checkbox" id="checkbox-{{ this.theme }}"
+                 value="{{ this.theme }}" oninput="updateFilters(this, 'theme', '{{ this.theme }}')" />
+          <label class="noselect" for="checkbox-{{ this.theme }}">{{ this.theme }}</label> {{/if}}
         </div>
       </div> {{/each}}
     </div>
