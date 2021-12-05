@@ -2,24 +2,18 @@
 
 ClearLineage is a system theme bringing the absolute finest of transparency effects to your system.
 
-This mod currently supports LineageOS 17 - 19.
-
 To get an impression of the theme,
 click yourself through the
 [interactive image gallery](https://programminghoch10.github.io/ClearLineage).
 
 ### Prerequisites
 
+This mod currently supports LineageOS 17 - 19.
+
 This mod uses a combo of Magisk-injected system overlays and LSPosed hooks.
 
 You can use the mod without LSPosed,
 but it won't work as well and is not recommended.
-
-### Compatibility
-
-* On LineageOS 17 the Theme is still in development
-* On LineageOS 18 the Theme is working perfectly
-* On LineageOS 19 the whole system looks different, but hey, someone gotta fix Google's bad design choices `¯\_(ツ)_/¯`
 
 ### Installation
 
@@ -32,7 +26,8 @@ but it won't work as well and is not recommended.
 
 ### Blur
 
-This module sets the system prop `ro.surface_flinger.supports_background_blur=1`, 
+This module sets the system prop 
+`ro.surface_flinger.supports_background_blur=1`, 
 which enables blur effects on your system.
 
 Blur is enabled by default, but it might cause lags.
@@ -49,11 +44,25 @@ You can report bugs, but I can't guarantuee I can fix them, especially if I can'
 
 You can report bugs in GitHub issues,
 or via Telegram
-[`@programminghoch10`](https://t.me/programminghoch10).
+[`@clearlineage`](https://t.me/clearlineage).
+
+### Development
+
+Development on Linux is very easy:
+- Compile and deploy to device:  
+  `./compile.sh && ./install-to-device.sh && adb reboot`
+- Recover device if crashing on boot:  
+  `./recover-device.sh`
+- Monitor overlay `android`:  
+  `watch adb shell cmd overlay dump com.programminghoch10.clearlineage.android`
+- Monitor Logcat of TAG `ClearLineage`:  
+  `while (true); do adb logcat -s ClearLineage; done`
 
 ### Contributions
 
-You are welcome to contribute, screenshots of what you changed would be nice, also I won't merge stuff I can't check myself.
+You are welcome to contribute, 
+screenshots and descriptions of what you changed are necessary, 
+and I won't merge stuff I can't check myself.
 
 ### Thank me
 
