@@ -270,7 +270,7 @@ function displayImage(img) {
     el.classList.add("visible");
     displayedImage = img.split("/")[1];
     let imgData = img.split("/")[1].split(".")[0].split("_");
-    let imgText = imgData[1] + " on " + imgData[2] + " @ LineageOS " + imgData[0] + " (" + imgData[4] + " theme) by " + imgData[5];
+    let imgText = imgData[1] + " on " + imgData[2] + " @ LineageOS " + imgData[0] + " (" + imgData[4] + " theme) | Screenshot by " + imgData[5];
     renderHandlebars(el, { img, imgText });
   }
 }
