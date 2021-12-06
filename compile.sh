@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -f "ClearLineage.zip" ]; then rm -v ClearLineage.zip; fi
+rm -v ClearLineage*.zip
 ./gradlew assemble || exit 1
 rm -r magiskmodule/files
 for SDK in 29 30 31; do
@@ -21,9 +21,10 @@ for OVERLAY in accent shape; do
 done
 mkdir -p magiskmodule/files/all/system/product/overlay/LineageBlackTheme
 cp -v emptyblacktheme/build/outputs/apk/release/emptyblacktheme-release.apk magiskmodule/files/all/system/product/overlay/LineageBlackTheme/LineageBlackTheme.apk
-VERSION=$(git log -1 --pretty=%h)
-#VERSION=$(date +%Y%m%d-%H%M%S)
+if [[ `git status --porcelain` ]]; then CHANGES="+"; else CHANGES="-"; fi
 VERSIONCODE=$(git rev-list --count HEAD)
+VERSION=v$VERSIONCODE$CHANGES\($(git log -1 --pretty=%h)\)
+#VERSION=$(date +%Y%m%d-%H%M%S)
 ID=$(cat module.prop | grep "id" | cut -d "=" -f2)
 NAME=$(cat module.prop | grep "name" | cut -d "=" -f2)
 AUTHOR=$(cat module.prop | grep "author" | cut -d "=" -f2)
@@ -35,5 +36,6 @@ versionCode=$VERSIONCODE
 author=$AUTHOR
 description=$DESC" > magiskmodule/module.prop
 cd magiskmodule
-zip -q -r -0 ../ClearLineage.zip *
+zip -q -r -0 ../ClearLineage-$VERSION.zip *
 cd ..
+cp -v ClearLineage-$VERSION.zip ClearLineage.zip
