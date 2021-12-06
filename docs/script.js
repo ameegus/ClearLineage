@@ -87,8 +87,8 @@ function buildPage(devicesjson) {
   versions = removeDuplicates(versions).sort();
   categories = removeDuplicates(categories).sort();
   devices = removeDuplicates(devices).sort();
-  blurs = removeDuplicates(blurs).sort();
-  themes = removeDuplicates(themes).sort();
+  blurs = removeDuplicates(blurs).sort().filter(v => v !== "undefined");
+  themes = removeDuplicates(themes).sort().filter(v => v !== "undefined");
   authors = removeDuplicates(authors).sort();
 
   for (let i = 0; i < Math.max(versions.length, categories.length, devices.length); i++) {
@@ -206,6 +206,10 @@ function getPictures() {
   if (themefilter.length == 0) themefilter = themes;
   if (authorfilter.length == 0) authorfilter = authors;
 
+  if (blurfilter.includes("noblur"))
+    blurfilter.push("undefined");
+  themefilter.push("undefined");
+
   for (let picture of pictures) {
     let imageAttributes = picture.split(".")[0].split("_")
     if (versionfilter.includes(imageAttributes[0])
@@ -269,10 +273,18 @@ function displayImage(img) {
   } else {
     el.classList.add("visible");
     displayedImage = img.split("/")[1];
-    let imgData = img.split("/")[1].split(".")[0].split("_");
-    let imgText = imgData[1] + " on " + imgData[2] + " @ LineageOS " + imgData[0] + " (" + imgData[4] + " theme) | Screenshot by " + imgData[5];
+    let imgData = img.split("/")[1];
+    let imgText = getImageDescription(imgData);
     renderHandlebars(el, { img, imgText });
   }
+}
+
+function getImageDescription(img) {
+  let imgData = img.split(".")[0].split("_");
+  let text = imgData[1] + " on " + imgData[2] + " @ LineageOS " + imgData[0]
+    + (imgData[4] !== "undefined" ? " (" + imgData[4] + " theme)" : "")
+    + " | Screenshot by " + imgData[5];
+  return text;
 }
 
 function darkTheme(value) {

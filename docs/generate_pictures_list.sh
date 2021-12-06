@@ -1,11 +1,14 @@
 #!/bin/bash
 
 # picture naming convention seperated by _
-# los verion
+# los version
 # category / view
 # device codename
 # blur/noblur
+# theme: dark/light
 # index: number counting up from 1 to be increased when multiple pictures have the same name
+
+# blur and theme can be undefined if this property is irrelevant
 
 cd images
 echo "[" > pictures.json
