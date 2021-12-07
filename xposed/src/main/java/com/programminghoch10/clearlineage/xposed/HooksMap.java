@@ -29,9 +29,9 @@ public class HooksMap {
     }
 
     static {
-        // Q uses same hooks as R
-        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.Q, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksR.SystemUIHook.class));
-        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksR.Launcher3Hook.class));
+        // Q
+        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.Q, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksQ.SystemUIHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksQ.Launcher3Hook.class));
         list.add(new HookEntry(HOOKTYPE.RES, Build.VERSION_CODES.Q, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.SettingsHook.class));
 
         // R
