@@ -30,18 +30,20 @@ public class HooksMap {
 
     static {
         // Q
-        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.Q, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksQ.SystemUIHook.class));
-        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksQ.Launcher3Hook.class));
+        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.Q, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SystemUIHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.Launcher3Hook.class));
         list.add(new HookEntry(HOOKTYPE.RES, Build.VERSION_CODES.Q, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.SettingsHook.class));
 
         // R
-        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.R, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksR.SystemUIHook.class));
-        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksR.Launcher3Hook.class));
+        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.R, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SystemUIHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.Launcher3Hook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.R.SystemUIHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.R.Launcher3Hook.class));
         list.add(new HookEntry(HOOKTYPE.RES, Build.VERSION_CODES.R, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.SettingsHook.class));
 
         // S
-        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.HooksS.SystemUIHook.class));
-        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.HooksS.Launcher3Hook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.S.SystemUIHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.S.Launcher3Hook.class));
         list.add(new HookEntry(HOOKTYPE.RES, Build.VERSION_CODES.S, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.SettingsHook.class));
     }
 

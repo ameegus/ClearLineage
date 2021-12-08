@@ -1,4 +1,4 @@
-package com.programminghoch10.clearlineage.xposed.HooksQ;
+package com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR;
 
 import android.content.Context;
 import android.content.res.Configuration;
