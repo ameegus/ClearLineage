@@ -31,7 +31,19 @@ public class Launcher3Hook implements HookCode {
         });
 
         XposedHelpers.findAndHookMethod("com.android.launcher3.uioverrides.states.OverviewState", lpparam.classLoader,
-                "getOverviewScrimAlpha", "com.android.launcher3.Launcher", XC_MethodReplacement.returnConstant(0.1f));
+                "getOverviewScrimAlpha", "com.android.launcher3.Launcher", XC_MethodReplacement.returnConstant(0.5f));
+        Class<?> scrimclass = XposedHelpers.findClass("com.android.launcher3.graphics.Scrim", lpparam.classLoader);
+        XposedHelpers.findAndHookMethod(scrimclass, "onExtractedColorsChanged",
+                "com.android.launcher3.uioverrides.WallpaperColorInfo", new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        Field mScrimColor = XposedHelpers.findField(scrimclass, "mScrimColor");
+                        Context context = ((View) XposedHelpers.getObjectField(param.thisObject, "mRoot")).getContext();
+                        boolean night = (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+                        mScrimColor.setInt(param.thisObject, night ? Color.BLACK : Color.GRAY);
+                        return null;
+                    }
+                });
 
         Class<?> scrimviewclass = XposedHelpers.findClass("com.android.launcher3.views.ScrimView", lpparam.classLoader);
         XposedHelpers.findAndHookMethod(scrimviewclass, "onExtractedColorsChanged",
