@@ -4,7 +4,7 @@
     package="com.programminghoch10.clearlineage.xposed">
 
     <application
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         tools:ignore="AllowBackup">
 
