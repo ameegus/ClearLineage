@@ -12,17 +12,11 @@ This mod currently supports LineageOS 17 - 19.
 
 This mod uses a combo of Magisk-injected system overlays and LSPosed hooks.
 
-You can use the mod without LSPosed,
-but it won't work as well and is not recommended.
-
 ### Installation
 
+1. Install LSPosed, reboot and confirm that it's working
 1. Install the module ZIP in Magisk
 1. Reboot
-1. Enable ClearLineage in LSPosed
-1. Reboot
-1. Reboot again
-1. You should have the full ClearLineage theme active now
 
 ### Blur
 

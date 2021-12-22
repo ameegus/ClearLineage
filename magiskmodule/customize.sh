@@ -1,5 +1,11 @@
 #!/bin/bash
 
+MODULESPATH=${MODPATH%/*}
+MODULESPATH=${MODULESPATH%/*}/modules #switch from modules_update to modules folder
+if [[ ! -d "$MODULESPATH/zygisk_lsposed" && ! -d "$MODULESPATH/riru_lsposed" ]]; then 
+	abort "LSPosed not found!"
+fi
+
 case $API in
 	29)
 		;;
