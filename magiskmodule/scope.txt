@@ -1,3 +1,0 @@
-com.android.systemui
-com.android.launcher3
-com.android.settings

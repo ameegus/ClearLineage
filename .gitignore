@@ -1,4 +1,5 @@
 magiskmodule/module.prop
+magiskmodule/scope.txt
 
 # Built application files
 *.apk

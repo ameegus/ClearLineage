@@ -35,6 +35,7 @@ version=$VERSION
 versionCode=$VERSIONCODE
 author=$AUTHOR
 description=$DESC" > magiskmodule/module.prop
+cat xposed/src/main/res/values/scope.xml | grep item  | cut -d'>' -f2 | cut -d'<' -f1 > magiskmodule/scope.txt
 cd magiskmodule
 zip -q -r -0 ../ClearLineage-$VERSION.zip *
 cd ..
