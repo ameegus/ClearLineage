@@ -70,7 +70,7 @@ public class SystemUIHook implements HookCode {
                 .forEach(method -> XposedBridge.hookMethod(method, XC_MethodReplacement.DO_NOTHING));
         Class<?> numpadbuttonclass = XposedHelpers.findClass("com.android.keyguard.NumPadButton", lpparam.classLoader);
         XposedHelpers.findAndHookMethod(numpadbuttonclass, "reloadColors", XC_MethodReplacement.DO_NOTHING);
-        Class<?> numpadkeyclass = XposedHelpers.findClass("com.android.keyboard.NumPadKey", lpparam.classLoader);
+        Class<?> numpadkeyclass = XposedHelpers.findClass("com.android.keyguard.NumPadKey", lpparam.classLoader);
         XposedHelpers.findAndHookMethod(numpadkeyclass, "reloadColors", XC_MethodReplacement.DO_NOTHING);
     }
 }
