@@ -1,6 +1,6 @@
 #!/bin/bash
 rm -v ClearLineage*.zip
-./gradlew clean assemble || exit 1
+./gradlew :xposed:clean assemble || exit 1
 rm -r magiskmodule/files
 for SDK in 29 30 31; do
     mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay
