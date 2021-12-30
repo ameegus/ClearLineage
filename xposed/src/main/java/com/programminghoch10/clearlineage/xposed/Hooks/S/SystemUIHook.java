@@ -72,5 +72,18 @@ public class SystemUIHook implements HookCode {
         XposedHelpers.findAndHookMethod(numpadbuttonclass, "reloadColors", XC_MethodReplacement.DO_NOTHING);
         Class<?> numpadkeyclass = XposedHelpers.findClass("com.android.keyguard.NumPadKey", lpparam.classLoader);
         XposedHelpers.findAndHookMethod(numpadkeyclass, "reloadColors", XC_MethodReplacement.DO_NOTHING);
+        
+        Class<?> animatableclockviewclass = XposedHelpers.findClass("com.android.keyguard.AnimatableClockView", lpparam.classLoader);
+        XposedHelpers.findAndHookMethod(animatableclockviewclass, "setColors", int.class, int.class, new XC_MethodHook() {
+            @TargetApi(Build.VERSION_CODES.S)
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                Context context = ((View) param.thisObject).getContext();
+                // dozing color
+                //param.args[0] = context.getResources().getColor(android.R.color.system_accent3_200, context.getTheme());
+                // clock accent color
+                param.args[1] = context.getResources().getColor(android.R.color.system_accent1_200, context.getTheme());
+            }
+        });
     }
 }
