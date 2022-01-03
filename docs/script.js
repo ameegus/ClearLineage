@@ -323,3 +323,48 @@ document.onkeydown = function (event) {
       break;
   }
 };
+
+let touchstartX = 0
+let touchendX = 0
+let touchstartY = 0
+let touchendY = 0
+const hysteresis = 20
+function handleGesture() {
+  let diffX = Math.abs(touchendX - touchstartX)
+  let diffY = Math.abs(touchendY - touchstartY)
+  diffX = diffX < hysteresis ? 0 : diffX
+  diffY = diffY < hysteresis ? 0 : diffY
+  let direction
+  if (diffX > diffY) {
+    if (touchendX < touchstartX) direction = "left"
+    if (touchendX > touchstartX) direction = "right"
+  } else {
+    if (touchendY < touchstartY) direction = "up"
+    if (touchendY > touchstartY) direction = "down"
+  }
+  switch (direction) {
+    case "left":
+      changeDisplayedImage(1)
+      break
+    case "right":
+      changeDisplayedImage(-1)
+      break
+    case "down":
+      displayImage(null)
+    default:
+    case "up":
+      break
+  }
+}
+const swipeElement = document.getElementById('display-image')
+swipeElement.addEventListener('touchstart', e => {
+  e.preventDefault()
+  touchstartX = e.changedTouches[0].screenX
+  touchstartY = e.changedTouches[0].screenY
+})
+swipeElement.addEventListener('touchend', e => {
+  e.preventDefault()
+  touchendX = e.changedTouches[0].screenX
+  touchendY = e.changedTouches[0].screenY
+  handleGesture()
+})
