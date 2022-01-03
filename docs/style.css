@@ -132,6 +132,11 @@ body #head {
 /* #endregion */
 
 /* #region inputs */
+@media screen and (max-width: 1000px) {
+  #filters {
+    display: none;
+  }
+}
 button,
 input,
 optgroup,
@@ -251,7 +256,7 @@ body.dark .table .row:hover {
 .image-grid {
   display: flex;
   flex-wrap: wrap;
-  width: calc(100% - 96px);
+  /* width: calc(100% - 96px); */
   margin: 24px;
   --height: 340; /* Minimal row height */
   --ratio: 1; /* Default aspect ratio for photos that are not loaded yet */
