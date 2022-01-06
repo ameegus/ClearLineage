@@ -81,7 +81,7 @@ if [ "$PUSHTYPE" = "root" ]; then
     pushasroot
 fi
 if [ "$PUSHTYPE" = "user" ]; then
-    pushasroot
+    pushasuser
 fi
 
 # detect automatically
