@@ -1,12 +1,14 @@
 package com.programminghoch10.clearlineage.xposed.Hooks.S;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
 import android.view.View;
 
 import com.programminghoch10.clearlineage.xposed.HookCode;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -18,9 +20,9 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class SystemUIHook implements HookCode {
-
+    
     private static final float QS_TILE_UNAVAILABLE_ALPHA = 0.5f;
-
+    
     public void hook(XC_LoadPackage.LoadPackageParam lpparam) throws Exception {
         Class<?> scrimcontrollerclass = XposedHelpers.findClass("com.android.systemui.statusbar.phone.ScrimController", lpparam.classLoader);
         XposedHelpers.findAndHookMethod(scrimcontrollerclass, "updateScrimColor", View.class, float.class, int.class, new XC_MethodHook() {
@@ -30,7 +32,7 @@ public class SystemUIHook implements HookCode {
                 class ScrimField {
                     final Object object;
                     final float targetAlpha;
-
+                    
                     ScrimField(Object object, float targetAlpha) {
                         this.object = object;
                         this.targetAlpha = targetAlpha;
@@ -48,7 +50,7 @@ public class SystemUIHook implements HookCode {
                 //param.args[2] = Color.BLACK;
             }
         });
-
+        
         Class<?> qstileviewimpl = XposedHelpers.findClass("com.android.systemui.qs.tileimpl.QSTileViewImpl", lpparam.classLoader);
         XposedHelpers.findAndHookConstructor(qstileviewimpl, Context.class, "com.android.systemui.plugins.qs.QSIconView", boolean.class, new XC_MethodHook() {
             @Override
@@ -63,7 +65,7 @@ public class SystemUIHook implements HookCode {
                 XposedHelpers.setIntField(param.thisObject, "colorInactive", 0x80000000);
             }
         });
-
+        
         Class<?> numpadanimatorclass = XposedHelpers.findClass("com.android.keyguard.NumPadAnimator", lpparam.classLoader);
         XposedBridge.hookAllConstructors(numpadanimatorclass, XC_MethodReplacement.DO_NOTHING);
         Arrays.stream(numpadanimatorclass.getDeclaredMethods())
@@ -85,5 +87,19 @@ public class SystemUIHook implements HookCode {
                 param.args[1] = context.getResources().getColor(android.R.color.system_accent1_200, context.getTheme());
             }
         });
+        
+        Class<?> globalactionsdialogliteclass = XposedHelpers.findClass("com.android.systemui.globalactions.GlobalActionsDialogLite$ActionsDialogLite", lpparam.classLoader);
+        Method showRestartOptionsMethod = XposedHelpers.findMethodExactIfExists(globalactionsdialogliteclass, "showRestartOptionsMenu");
+        if (showRestartOptionsMethod != null) {
+            XposedBridge.hookMethod(showRestartOptionsMethod, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    View mContainer = (View) XposedHelpers.findField(globalactionsdialogliteclass, "mContainer").get(param.thisObject);
+                    Dialog mRestartOptionsDialog = (Dialog) XposedHelpers.findField(globalactionsdialogliteclass, "mRestartOptionsDialog").get(param.thisObject);
+                    mContainer.setVisibility(View.INVISIBLE);
+                    mRestartOptionsDialog.setOnDismissListener(dialog -> mContainer.setVisibility(View.VISIBLE));
+                }
+            });
+        }
     }
 }
