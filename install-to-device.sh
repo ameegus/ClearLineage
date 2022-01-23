@@ -17,6 +17,7 @@ REBOOT="$2"
 DEVICE="$3"
 
 if [ -z "$REBOOT" ]; then REBOOT="no"; fi
+if [ "$REBOOT" = "y" ]; then REBOOT="yes"; fi
 if [ -z "$PUSHTYPE" ]; then PUSHTYPE="auto"; fi
 if [ "$PUSHTYPE" = "auto" ]; then PUSHTYPE="preferroot"; fi
 
