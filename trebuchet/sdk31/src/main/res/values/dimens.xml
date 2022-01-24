@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="task_menu_corner_radius">4dp</dimen>
+    <dimen name="task_menu_item_corner_radius">@dimen/task_menu_corner_radius</dimen>
+</resources>
