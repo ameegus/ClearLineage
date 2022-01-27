@@ -4,4 +4,8 @@
 
     <!-- unaltered values, used for overlaying drawables -->
     <dimen name="qs_footer_action_corner_radius">20dp</dimen>
+
+    <!-- hides the app icon above media player album art -->
+    <dimen name="qs_media_icon_size">0dp</dimen>
+
 </resources>
