@@ -25,6 +25,8 @@ disable_and_exit() {
 
 # sqlite setup
 SQLITE=$(which sqlite3)
+SQLITE_ALT_PATH="/system/bin/sqlite3"
+[ ! -f "$SQLITE" ] && [ -f "$SQLITE_ALT_PATH" ] && SQLITE="$SQLITE_ALT_PATH"
 echo "SQLITE=$SQLITE" >> $LOGFILE
 if [ ! -f "$SQLITE" ]; then
     echo "fatal: sqlite not found!" >> $LOGFILE
