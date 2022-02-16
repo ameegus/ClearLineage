@@ -1,0 +1,13 @@
+## ClearLineage v97
+- added magisk updates
+- fix qs footer action chip not transparent
+- fix R/S noticiation guts hardly readable
+- fix Q/R notification gear hardly visible
+- settings redesign on Q/R
+- fix advanced powermenu transparent on S
+- make media player transparent on S
+- make task menu transparent
+- fix VPN connected background on Q
+- change S lockscreen clock color
+- small install script and further bug fixes
+- hopefully fixed some sqlite3 not found cases
