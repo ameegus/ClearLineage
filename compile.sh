@@ -29,12 +29,14 @@ ID=$(cat module.prop | grep "id" | cut -d "=" -f2)
 NAME=$(cat module.prop | grep "name" | cut -d "=" -f2)
 AUTHOR=$(cat module.prop | grep "author" | cut -d "=" -f2)
 DESC=$(cat module.prop | grep "description" | cut -d "=" -f2)
+UPDATEJSON=$(cat module.prop | grep "updateJson" | cut -d "=" -f2)
 echo "id=$ID
 name=$NAME
 version=$VERSION
 versionCode=$VERSIONCODE
 author=$AUTHOR
-description=$DESC" > magiskmodule/module.prop
+description=$DESC
+updateJson=$UPDATEJSON" > magiskmodule/module.prop
 cat xposed/src/main/res/values/scope.xml | grep item  | cut -d'>' -f2 | cut -d'<' -f1 > magiskmodule/scope.txt
 cd magiskmodule
 zip -q -r -0 ../ClearLineage-$VERSION.zip *

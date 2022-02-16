@@ -2,3 +2,4 @@ id=clearlineage
 name=ClearLineage
 author=programminghoch10
 description=LineageOS Clear Theme
+updateJson=https://raw.githubusercontent.com/programminghoch10/ClearLineage/deploy/update.json
