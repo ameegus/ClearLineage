@@ -12,7 +12,8 @@ done
 mkdir -p magiskmodule/files/all/system/app/clearlineage
 cp -v xposed/build/outputs/apk/release/xposed-release.apk magiskmodule/files/all/system/app/clearlineage/ClearLineage-xposed.apk
 for OVERLAY in accent shape; do
-    for SDK in 29 30; do
+    for SDK in 29 30 31; do
+        [ "$OVERLAY" = "accent" ] && [ "$SDK" = "31" ] && continue # due to material you, accent colors are unnecessary on 31
         mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay
         for ITEM in $(ls $OVERLAY); do
             cp -v $OVERLAY/$ITEM/build/outputs/apk/release/$ITEM-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/ClearLineage-$OVERLAY-$ITEM.apk
