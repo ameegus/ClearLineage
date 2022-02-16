@@ -24,7 +24,7 @@ mkdir -p magiskmodule/files/all/system/product/overlay/LineageBlackTheme
 cp -v emptyblacktheme/build/outputs/apk/release/emptyblacktheme-release.apk magiskmodule/files/all/system/product/overlay/LineageBlackTheme/LineageBlackTheme.apk
 if [[ `git status --porcelain` ]]; then CHANGES="+"; else CHANGES="-"; fi
 VERSIONCODE=$(git rev-list --count HEAD)
-VERSION=v$VERSIONCODE$CHANGES\($(git log -1 --pretty=%h)\)
+VERSION=v$VERSIONCODE$CHANGES$(git log -1 --pretty=%h)
 #VERSION=$(date +%Y%m%d-%H%M%S)
 ID=$(cat module.prop | grep "id" | cut -d "=" -f2)
 NAME=$(cat module.prop | grep "name" | cut -d "=" -f2)
