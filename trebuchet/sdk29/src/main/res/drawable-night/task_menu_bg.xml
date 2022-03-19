@@ -29,7 +29,7 @@
                 android:topRightRadius="?android:attr/dialogCornerRadius"
                 android:bottomLeftRadius="0dp"
                 android:bottomRightRadius="0dp" />
-            <solid android:color="#afff" />
+            <solid android:color="#8000" />
         </shape>
     </item>
 </layer-list>
