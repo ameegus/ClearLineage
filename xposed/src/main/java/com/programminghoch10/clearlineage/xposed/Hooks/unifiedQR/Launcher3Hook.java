@@ -29,7 +29,7 @@ public class Launcher3Hook implements HookCode {
                 mEndAlpha.setInt(param.thisObject, (int) (255 * (night ? 0.5f : 0.7f)));
             }
         });
-
+        
         XposedHelpers.findAndHookMethod("com.android.launcher3.uioverrides.states.OverviewState", lpparam.classLoader,
                 "getOverviewScrimAlpha", "com.android.launcher3.Launcher", XC_MethodReplacement.returnConstant(0.5f));
         Class<?> scrimclass = XposedHelpers.findClass("com.android.launcher3.graphics.Scrim", lpparam.classLoader);
@@ -44,7 +44,7 @@ public class Launcher3Hook implements HookCode {
                         return null;
                     }
                 });
-
+        
         Class<?> scrimviewclass = XposedHelpers.findClass("com.android.launcher3.views.ScrimView", lpparam.classLoader);
         XposedHelpers.findAndHookMethod(scrimviewclass, "onExtractedColorsChanged",
                 "com.android.launcher3.uioverrides.WallpaperColorInfo", new XC_MethodHook() {

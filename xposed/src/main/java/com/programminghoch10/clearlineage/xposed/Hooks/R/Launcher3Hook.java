@@ -1,19 +1,11 @@
 package com.programminghoch10.clearlineage.xposed.Hooks.R;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Color;
-import android.util.AttributeSet;
-import android.view.View;
-
 import com.programminghoch10.clearlineage.xposed.HookCode;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;

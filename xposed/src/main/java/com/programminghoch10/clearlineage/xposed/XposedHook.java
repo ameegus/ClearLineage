@@ -1,6 +1,5 @@
 package com.programminghoch10.clearlineage.xposed;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
 
 import java.lang.reflect.Method;
@@ -15,16 +14,15 @@ import de.robv.android.xposed.callbacks.XCallback;
 
 public class XposedHook implements IXposedHookLoadPackage, IXposedHookInitPackageResources, IXposedHookZygoteInit {
     public static String MODULE_PATH = null;
-
-    @SuppressLint("ObsoleteSdkInt")
+    
     private static boolean isAndroidVersionSupported() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || Build.VERSION.SDK_INT > Build.VERSION_CODES.S) {
-            XposedBridge.log("Android Version " + Build.VERSION.SDK_INT + " not supported!");
+        if (!HooksMap.supportedSDKs.contains(Build.VERSION.SDK_INT)) {
+            XposedBridge.log("Android SDK " + Build.VERSION.SDK_INT + " not supported!");
             return false;
         }
         return true;
     }
-
+    
     private static void hook(HooksMap.HOOKTYPE hooktype, String packageName, XCallback.Param param) throws Exception {
         if (!isAndroidVersionSupported()) return;
         if (!HooksMap.supportedPackages.contains(packageName)) return;
@@ -43,17 +41,17 @@ public class XposedHook implements IXposedHookLoadPackage, IXposedHookInitPackag
                     }
                 });
     }
-
+    
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Exception {
         hook(HooksMap.HOOKTYPE.CODE, lpparam.packageName, lpparam);
     }
-
+    
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) throws Exception {
         hook(HooksMap.HOOKTYPE.RES, resparam.packageName, resparam);
     }
-
+    
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) throws Throwable {
         if (!isAndroidVersionSupported()) return;

@@ -11,10 +11,10 @@ case $API in
 		;;
 	30)
 		;;
-	31)
+	32)
 		;;
 	*)
-		abort "Your Android version is not supported!"
+		abort "Android SDK $API is not supported!"
 		;;
 esac
 

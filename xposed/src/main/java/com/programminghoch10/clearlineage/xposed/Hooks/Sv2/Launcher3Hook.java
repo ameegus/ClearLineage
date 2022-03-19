@@ -1,4 +1,4 @@
-package com.programminghoch10.clearlineage.xposed.Hooks.S;
+package com.programminghoch10.clearlineage.xposed.Hooks.Sv2;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -49,7 +49,7 @@ public class Launcher3Hook implements HookCode {
             }
         });
         XposedHelpers.findAndHookMethod(allappscontainerview, "updateHeaderScroll", int.class, XC_MethodReplacement.DO_NOTHING);
-
+        
         Class<?> depthcontrollerclass = XposedHelpers.findClass("com.android.launcher3.statehandlers.DepthController", lpparam.classLoader);
         final boolean[] systemAppLaunch = {false};
         XposedHelpers.findAndHookMethod(depthcontrollerclass, "setIsInLaunchTransition", boolean.class, new XC_MethodReplacement() {

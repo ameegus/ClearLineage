@@ -1,4 +1,4 @@
-package com.programminghoch10.clearlineage.xposed.Hooks.S;
+package com.programminghoch10.clearlineage.xposed.Hooks.Sv2;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;
