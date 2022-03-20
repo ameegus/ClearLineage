@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Attribution path for SignalDrawable as defined on a 24x24 canvas. -->
+    <string name="config_signalAttributionPath" translatable="false">
+        M0,0z
+    </string>
+    <!-- config_signalCutout{Height,Width}Fraction define fraction of the 24x24 canvas that
+         should be cut out to display config_signalXPath.-->
+    <item name="config_signalCutoutWidthFraction" format="float" type="dimen">0</item>
+    <item name="config_signalCutoutHeightFraction" format="float" type="dimen">0</item>
+</resources>
