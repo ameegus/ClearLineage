@@ -20,8 +20,10 @@ for OVERLAY in accent shape; do
         done
     done
 done
-mkdir -p magiskmodule/files/all/system/product/overlay/LineageBlackTheme
-cp -v emptyblacktheme/build/outputs/apk/release/emptyblacktheme-release.apk magiskmodule/files/all/system/product/overlay/LineageBlackTheme/LineageBlackTheme.apk
+for SDK in 29 30; do
+    mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay/LineageBlackTheme
+    cp -v emptyblacktheme/build/outputs/apk/release/emptyblacktheme-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/LineageBlackTheme/LineageBlackTheme.apk
+done
 if [[ `git status --porcelain` ]]; then CHANGES="+"; else CHANGES="-"; fi
 VERSIONCODE=$(git rev-list --count HEAD)
 VERSION=v$VERSIONCODE$CHANGES$(git log -1 --pretty=%h)
