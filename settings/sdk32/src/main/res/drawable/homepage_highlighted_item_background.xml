@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="@dimen/homepage_menu_entry_padding_horizontal"
+    android:insetRight="@dimen/homepage_menu_entry_padding_horizontal">
+    <shape android:shape="rectangle">
+        <corners
+            android:radius="@dimen/homepage_menu_entry_corner_radius" />
+        <stroke android:color="?android:attr/textColorPrimary"
+            android:width="@dimen/homepage_menu_entry_stroke_width" />
+    </shape>
+</inset>
