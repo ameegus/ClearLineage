@@ -31,5 +31,8 @@ public class SettingsHook implements HookCode {
                         }
                     }
                 });
+        
+        Class<?> settingshomepageactivityclass = XposedHelpers.findClass("com.android.settings.homepage.SettingsHomepageActivity", lpparam.classLoader);
+        XposedHelpers.findAndHookMethod(settingshomepageactivityclass, "updateHomepageBackground", XC_MethodReplacement.DO_NOTHING);
     }
 }
