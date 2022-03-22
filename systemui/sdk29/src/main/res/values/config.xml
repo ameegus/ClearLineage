@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Snooze: default notification snooze time. -->
+    <integer name="config_notification_snooze_time_default">360</integer>
+
+    <!-- Snooze: List of snooze values in integer minutes. -->
+    <integer-array name="config_notification_snooze_times">
+        <item>120</item> <!-- 2 hours -->
+        <item>360</item> <!-- 6 hours -->
+        <item>720</item> <!-- 12 hours -->
+        <item>2880</item> <!-- 2 days -->
+    </integer-array>
+
+</resources>
