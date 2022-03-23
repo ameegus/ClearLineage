@@ -78,5 +78,14 @@ public class TrebuchetHook implements HookCode {
                     XposedHelpers.setBooleanField(param.thisObject, "mBlurDisabledForAppLaunch", false);
             }
         });
+        
+        final float TASKBAR_TARGET_ALPHA = 0.5f;
+        Class<?> taskbardraglayerclass = XposedHelpers.findClass("com.android.launcher3.taskbar.TaskbarDragLayer", lpparam.classLoader);
+        XposedHelpers.findAndHookMethod(taskbardraglayerclass, "setTaskbarBackgroundAlpha", float.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                param.args[0] = (float) param.args[0] * TASKBAR_TARGET_ALPHA;
+            }
+        });
     }
 }

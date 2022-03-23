@@ -2,4 +2,8 @@
 <resources>
     <color name="task_menu_item_bg_color">@android:color/transparent</color>
     <color name="task_menu_bg_color">#afff</color>
+
+    <!-- Taskbar -->
+    <color name="taskbar_stashed_handle_light_color">#afff</color>
+    <color name="taskbar_stashed_handle_dark_color">#a000</color>
 </resources>
