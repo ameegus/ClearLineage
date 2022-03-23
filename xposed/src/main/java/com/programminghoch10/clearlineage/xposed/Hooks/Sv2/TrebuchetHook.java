@@ -15,7 +15,7 @@ import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class Launcher3Hook implements HookCode {
+public class TrebuchetHook implements HookCode {
     public void hook(XC_LoadPackage.LoadPackageParam lpparam) throws Exception {
         Class<?> scrimviewclass = XposedHelpers.findClass("com.android.launcher3.views.ScrimView", lpparam.classLoader);
         XposedHelpers.findAndHookMethod(scrimviewclass, "setBackgroundColor", int.class, new XC_MethodHook() {

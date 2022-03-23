@@ -10,7 +10,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class Launcher3Hook implements HookCode {
+public class TrebuchetHook implements HookCode {
     @Override
     public void hook(XC_LoadPackage.LoadPackageParam lpparam) throws Exception {
         Class<?> depthcontrollerclass = XposedHelpers.findClass("com.android.launcher3.statehandlers.DepthController", lpparam.classLoader);
