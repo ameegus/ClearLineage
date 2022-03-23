@@ -14,9 +14,4 @@
 
     </style>
 
-    <style name="Theme.DeviceDefault.Settings" parent="Theme.DeviceDefault">
-        <!-- this defines the homepage icon color -->
-        <item name="android:colorPrimary">@android:color/black</item>
-    </style>
-
 </resources>
