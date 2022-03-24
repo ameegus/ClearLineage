@@ -13,4 +13,5 @@
         <!--<item name="android:textSize">20sp</item>-->
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
+    <style name="Switch.SettingsLib" parent="@android:style/Widget.Material.CompoundButton.Switch" />
 </resources>
