@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main Switch Preference -->
+    <color name="settingslib_switch_bar_stroke_color_on">?android:attr/colorControlActivated</color>
+    <color name="settingslib_switch_bar_stroke_color_off">?android:attr/colorControlNormal</color>
+    <drawable name="settingslib_switch_bar_bg_disabled">@drawable/settingslib_switch_bar_bg_off</drawable>
+</resources>

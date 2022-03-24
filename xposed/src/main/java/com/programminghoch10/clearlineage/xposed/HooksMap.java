@@ -20,14 +20,14 @@ public class HooksMap {
         list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.Q, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SystemUIHook.class));
         list.add(new HookEntry(HOOKTYPE.RES, Build.VERSION_CODES.Q, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.Q.SystemUIHook.class));
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.TrebuchetHook.class));
-        list.add(new HookEntry(HOOKTYPE.RES, Build.VERSION_CODES.Q, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SettingsHook.class));
+        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.Q, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SettingsHook.class));
         
         // R
         list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.R, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SystemUIHook.class));
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.TrebuchetHook.class));
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.R.SystemUIHook.class));
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.R.TrebuchetHook.class));
-        list.add(new HookEntry(HOOKTYPE.RES, Build.VERSION_CODES.R, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SettingsHook.class));
+        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.R, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SettingsHook.class));
         
         // Sv2
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.Sv2.SystemUIHook.class));

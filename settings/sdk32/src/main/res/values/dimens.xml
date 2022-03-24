@@ -4,4 +4,8 @@
     <dimen name="homepage_menu_entry_padding_horizontal">16dp</dimen>
     <dimen name="homepage_menu_entry_corner_radius">20dp</dimen>
     <dimen name="homepage_menu_entry_stroke_width">2dp</dimen>
+
+    <!-- Main Switch Preference -->
+    <dimen name="settingslib_switch_bar_radius">28dp</dimen>
+    <dimen name="settingslib_switch_bar_stroke_width">2dp</dimen>
 </resources>

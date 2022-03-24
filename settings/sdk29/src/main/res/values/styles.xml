@@ -7,4 +7,10 @@
         <item name="android:paddingBottom">16dp</item>
         <item name="android:paddingEnd">16dp</item>
     </style>
+
+    <!-- switchbar -->
+    <style name="Widget.SwitchBar.Switch" parent="@android:style/Widget.Material.CompoundButton.Switch">
+        <item name="android:trackTint">?android:attr/textColorSecondary</item>
+        <item name="android:thumbTint">?android:attr/textColorPrimary</item>
+    </style>
 </resources>
