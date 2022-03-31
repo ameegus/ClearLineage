@@ -4,5 +4,6 @@
         <item>com.android.systemui</item>
         <item>com.android.launcher3</item>
         <item>com.android.settings</item>
+        <item>org.lineageos.updater</item>
     </string-array>
 </resources>

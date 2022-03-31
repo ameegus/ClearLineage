@@ -4,8 +4,8 @@ rm -v ClearLineage*.zip
 rm -r magiskmodule/files
 for SDK in 29 30 32; do
     mkdir -p magiskmodule/files/sdk$SDK/system/product/overlay
-    for TARGET in android systemui trebuchet settings; do
-        if [ ! -d $TARGET/sdk$SDK ]; then continue; fi;
+    for TARGET in android systemui trebuchet settings updater; do
+        [ ! -d $TARGET/sdk$SDK ] && continue
         cp -v $TARGET/sdk$SDK/build/outputs/apk/release/sdk$SDK-release.apk magiskmodule/files/sdk$SDK/system/product/overlay/ClearLineage-$TARGET-sdk$SDK.apk
     done
 done

@@ -10,6 +10,7 @@ public class HooksMap {
     public static final String PACKAGE_SYSTEMUI = "com.android.systemui";
     public static final String PACKAGE_LAUNCHER3 = "com.android.launcher3";
     public static final String PACKAGE_SETTINGS = "com.android.settings";
+    public static final String PACKAGE_UPDATER = "org.lineageos.updater";
     public static final String TAG = "ClearLineage";
     public static List<String> supportedPackages;
     public static List<Integer> supportedSDKs;
@@ -21,6 +22,7 @@ public class HooksMap {
         list.add(new HookEntry(HOOKTYPE.RES, Build.VERSION_CODES.Q, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.Q.SystemUIHook.class));
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.Q, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.TrebuchetHook.class));
         list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.Q, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SettingsHook.class));
+        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.Q, PACKAGE_UPDATER, com.programminghoch10.clearlineage.xposed.Hooks.UpdaterHook.class));
         
         // R
         list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.R, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SystemUIHook.class));
@@ -28,11 +30,13 @@ public class HooksMap {
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.R.SystemUIHook.class));
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.R, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.R.TrebuchetHook.class));
         list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.R, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.unifiedQR.SettingsHook.class));
+        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.R, PACKAGE_UPDATER, com.programminghoch10.clearlineage.xposed.Hooks.UpdaterHook.class));
         
         // Sv2
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.Sv2.SystemUIHook.class));
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.Sv2.TrebuchetHook.class));
         list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.Sv2.SettingsHook.class));
+        list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.S_V2, PACKAGE_UPDATER, com.programminghoch10.clearlineage.xposed.Hooks.UpdaterHook.class));
     }
     
     static {
