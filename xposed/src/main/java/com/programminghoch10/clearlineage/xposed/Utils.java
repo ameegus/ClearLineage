@@ -11,4 +11,12 @@ public class Utils {
                                 && stackTraceElement.getClassName().equals(method.getDeclaringClass().getName())
                 );
     }
+    
+    public static int setAlpha(int color, int alpha) {
+        return color & ~(0xff << 24) | (alpha << 24);
+    }
+    
+    public static int setAlpha(int color, float alpha) {
+        return setAlpha(color, (int) (alpha * 0xff));
+    }
 }

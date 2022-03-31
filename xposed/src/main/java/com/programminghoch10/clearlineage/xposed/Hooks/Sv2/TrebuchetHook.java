@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 
 import com.programminghoch10.clearlineage.xposed.HookCode;
+import com.programminghoch10.clearlineage.xposed.Utils;
 
 import java.lang.reflect.Field;
 
@@ -24,8 +25,8 @@ public class TrebuchetHook implements HookCode {
                 int prevcolor = (int) param.args[0];
                 // if the color is an transparent white or black, it probably comes from our overlays, so we don't change it
                 if (prevcolor == Color.TRANSPARENT
-                        || (prevcolor | 0xFF000000) == Color.WHITE
-                        || (prevcolor | 0xFF000000) == Color.BLACK)
+                        || Utils.setAlpha(prevcolor, 0xFF) == Color.WHITE
+                        || Utils.setAlpha(prevcolor, 0xFF) == Color.BLACK)
                     return;
                 int prevalpha = Color.alpha(prevcolor);
                 // could use provided color, but that is an ugly grey and transparent black or white looks better
@@ -34,8 +35,7 @@ public class TrebuchetHook implements HookCode {
                 boolean night = (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
                 int adaptivecolor = night ? Color.BLACK : Color.WHITE;
                 int newalpha = (int) (prevalpha * 0.5f);
-                int newcolor = (adaptivecolor & 0x00FFFFFF) | (newalpha << 24);
-                param.args[0] = newcolor;
+                param.args[0] = Utils.setAlpha(adaptivecolor, newalpha);
             }
         });
         Class<?> allappscontainerview = XposedHelpers.findClass("com.android.launcher3.allapps.AllAppsContainerView", lpparam.classLoader);

@@ -3,10 +3,12 @@ package com.programminghoch10.clearlineage.xposed.Hooks.Sv2;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 
 import com.programminghoch10.clearlineage.xposed.HookCode;
+import com.programminghoch10.clearlineage.xposed.Utils;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -58,11 +60,11 @@ public class SystemUIHook implements HookCode {
                 final String[] unavailableFields = new String[]{"colorLabelUnavailable", "colorSecondaryLabelUnavailable"};
                 for (String field : unavailableFields) {
                     int prevcolor = XposedHelpers.getIntField(param.thisObject, field);
-                    int newcolor = prevcolor & 0xFFFFFF | ((int) (QS_TILE_UNAVAILABLE_ALPHA * 0xFF) << 4 * 6);
+                    int newcolor = Utils.setAlpha(prevcolor, QS_TILE_UNAVAILABLE_ALPHA);
                     XposedHelpers.setIntField(param.thisObject, field, newcolor);
                 }
-                XposedHelpers.setIntField(param.thisObject, "colorUnavailable", (int) (QS_TILE_UNAVAILABLE_ALPHA * 0.5f * 0xFF) << 4 * 6);
-                XposedHelpers.setIntField(param.thisObject, "colorInactive", 0x80000000);
+                XposedHelpers.setIntField(param.thisObject, "colorUnavailable", Utils.setAlpha(Color.BLACK, QS_TILE_UNAVAILABLE_ALPHA * 0.5f));
+                XposedHelpers.setIntField(param.thisObject, "colorInactive", Utils.setAlpha(Color.BLACK, 0x80));
             }
         });
         

@@ -6,6 +6,7 @@ import android.view.View;
 import com.programminghoch10.clearlineage.xposed.HookCode;
 import com.programminghoch10.clearlineage.xposed.HookRes;
 import com.programminghoch10.clearlineage.xposed.HooksMap;
+import com.programminghoch10.clearlineage.xposed.Utils;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
@@ -35,7 +36,7 @@ public class SystemUIHook implements HookCode, HookRes {
                 View quick_settings_status_bar_background = liparam.view.findViewById(
                         liparam.res.getIdentifier("quick_settings_status_bar_background", "id", HooksMap.PACKAGE_SYSTEMUI)
                 );
-                quick_settings_status_bar_background.setBackgroundColor(0x80000000);
+                quick_settings_status_bar_background.setBackgroundColor(Utils.setAlpha(Color.BLACK, 0x80));
             }
         });
     }

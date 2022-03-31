@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.programminghoch10.clearlineage.xposed.HookCode;
 import com.programminghoch10.clearlineage.xposed.HookRes;
 import com.programminghoch10.clearlineage.xposed.HooksMap;
+import com.programminghoch10.clearlineage.xposed.Utils;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
@@ -24,11 +25,8 @@ public class SettingsHook implements HookCode, HookRes {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 final String fieldName = "mBackgroundActivatedColor";
-                final int alphaMultiplier = 0xa0;
                 int prevcolor = (int) XposedHelpers.getIntField(param.thisObject, fieldName);
-                int oldalpha = Color.alpha(prevcolor);
-                int newalpha = (int) oldalpha * alphaMultiplier;
-                int newcolor = prevcolor & ~(0xff << 24) | (newalpha << 24);
+                int newcolor = Utils.setAlpha(prevcolor, 0xa0);
                 XposedHelpers.setIntField(param.thisObject, fieldName, newcolor);
                 
                 Context context = (Context) param.args[0];
