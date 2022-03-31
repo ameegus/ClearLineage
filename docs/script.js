@@ -102,7 +102,17 @@ function buildPage(devicesjson) {
   }
 
   renderHandlebars(getel("filters"), { tableRows });
+  loadFilterCookie()
+  updateFilterCheckboxes()
   updatePictures();
+}
+
+function updateFilterCheckboxes() {
+  let inputs = document.querySelectorAll("#filters input")
+  inputs.forEach(input => {
+    let searchValue = input.id.substring("checkbox-".length)
+    input.checked = filtersSelected.findIndex(el => el.value == searchValue) >= 0
+  })
 }
 
 function updateFilters(el, key, value) {
@@ -116,6 +126,7 @@ function updateFilters(el, key, value) {
       return e.key != key || e.value != value;
     });
   }
+  saveFilterCookie()
   updatePictures();
 }
 
@@ -368,3 +379,40 @@ swipeElement.addEventListener('touchend', e => {
   touchendY = e.changedTouches[0].screenY
   handleGesture()
 })
+
+const cookiesavetime = 5 * 60 //in s
+const cookiesavepath = document.location.pathname
+function setCookie(cname, cvalue) {
+  if (cvalue == undefined) cvalue = ""
+  let d = new Date()
+  d.setTime(d.getTime() + cookiesavetime * 1000)
+  document.cookie = cname + "=" + btoa(cvalue) + ";expires=" + d.toUTCString() + ";path=" + cookiesavepath
+}
+function getCookie(cname) {
+  return atob((() => {
+    var name = cname + "="
+    var decodedCookie = decodeURIComponent(document.cookie)
+    var ca = decodedCookie.split(";")
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i]
+      while (c.charAt(0) == " ") {
+        c = c.substring(1)
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length)
+      }
+    }
+    return ""
+  })())
+}
+
+const filtercookiename = "filter"
+function saveFilterCookie() {
+  setCookie(filtercookiename, JSON.stringify(filtersSelected))
+}
+function loadFilterCookie() {
+  let cvalue = getCookie(filtercookiename)
+  if (!cvalue) return
+  filtersSelected = JSON.parse(cvalue)
+  return filtersSelected
+}
