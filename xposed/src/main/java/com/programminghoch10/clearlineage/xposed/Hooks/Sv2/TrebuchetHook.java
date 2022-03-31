@@ -32,8 +32,7 @@ public class TrebuchetHook implements HookCode {
                 // could use provided color, but that is an ugly grey and transparent black or white looks better
                 Field mContext = XposedHelpers.findField(scrimviewclass, "mContext");
                 Context context = (Context) mContext.get(param.thisObject);
-                boolean night = (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
-                int adaptivecolor = night ? Color.BLACK : Color.WHITE;
+                int adaptivecolor = Utils.isNight(context) ? Color.BLACK : Color.WHITE;
                 int newalpha = (int) (prevalpha * 0.5f);
                 param.args[0] = Utils.setAlpha(adaptivecolor, newalpha);
             }

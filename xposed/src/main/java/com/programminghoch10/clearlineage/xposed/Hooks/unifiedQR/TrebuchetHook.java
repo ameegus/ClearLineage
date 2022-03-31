@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.programminghoch10.clearlineage.xposed.HookCode;
+import com.programminghoch10.clearlineage.xposed.Utils;
 
 import java.lang.reflect.Field;
 
@@ -24,7 +25,7 @@ public class TrebuchetHook implements HookCode {
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 Field mEndAlpha = XposedHelpers.findField(shelfscrimviewclass, "mEndAlpha");
                 Field mEndScrim = XposedHelpers.findField(shelfscrimviewclass, "mEndScrim");
-                boolean night = (((Context) param.args[0]).getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+                boolean night = Utils.isNight((Context) param.args[0]);
                 mEndScrim.setInt(param.thisObject, night ? Color.BLACK : Color.WHITE);
                 mEndAlpha.setInt(param.thisObject, (int) (255 * (night ? 0.5f : 0.7f)));
             }
@@ -39,8 +40,7 @@ public class TrebuchetHook implements HookCode {
                     protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                         Field mScrimColor = XposedHelpers.findField(scrimclass, "mScrimColor");
                         Context context = ((View) XposedHelpers.getObjectField(param.thisObject, "mRoot")).getContext();
-                        boolean night = (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
-                        mScrimColor.setInt(param.thisObject, night ? Color.BLACK : Color.GRAY);
+                        mScrimColor.setInt(param.thisObject, Utils.isNight(context) ? Color.BLACK : Color.GRAY);
                         return null;
                     }
                 });
@@ -53,7 +53,7 @@ public class TrebuchetHook implements HookCode {
                         Field mEndFlatColorAlpha = XposedHelpers.findField(scrimviewclass, "mEndFlatColorAlpha");
                         Field mEndScrim = XposedHelpers.findField(scrimviewclass, "mEndScrim");
                         Context context = ((View) param.thisObject).getContext();
-                        boolean night = (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+                        boolean night = Utils.isNight(context);
                         mEndScrim.setInt(param.thisObject, night ? Color.BLACK : Color.WHITE);
                         mEndFlatColorAlpha.setInt(param.thisObject, (int) (255 * (night ? 0.5f : 0.7f)));
                     }
