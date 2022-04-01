@@ -8,6 +8,7 @@ import android.os.Build;
 import android.view.View;
 
 import com.programminghoch10.clearlineage.xposed.HookCode;
+import com.programminghoch10.clearlineage.xposed.HooksMap;
 import com.programminghoch10.clearlineage.xposed.Utils;
 
 import java.lang.reflect.Method;
@@ -40,9 +41,13 @@ public class SystemUIHook implements HookCode {
                         this.targetAlpha = targetAlpha;
                     }
                 }
+                Context context = ((View) param.args[0]).getContext();
+                boolean usesSplitShade = context.getResources().getBoolean(
+                        context.getResources().getIdentifier("config_use_split_notification_shade", "bool", HooksMap.PACKAGE_SYSTEMUI)
+                );
                 List<ScrimField> scrims = List.of(
                         new ScrimField(XposedHelpers.findField(scrimcontrollerclass, "mScrimBehind").get(param.thisObject), 0.5f),
-                        new ScrimField(XposedHelpers.findField(scrimcontrollerclass, "mNotificationsScrim").get(param.thisObject), 0.5f)
+                        new ScrimField(XposedHelpers.findField(scrimcontrollerclass, "mNotificationsScrim").get(param.thisObject), usesSplitShade ? 0.0f : 0.5f)
                 );
                 Optional<ScrimField> fieldOp = scrims.stream().filter(item -> item.object.equals(param.args[0])).findAny();
                 if (!fieldOp.isPresent())
