@@ -1,13 +1,12 @@
-## ClearLineage v97
-- added magisk updates
-- fix qs footer action chip not transparent
-- fix R/S noticiation guts hardly readable
-- fix Q/R notification gear hardly visible
-- settings redesign on Q/R
-- fix advanced powermenu transparent on S
-- make media player transparent on S
-- make task menu transparent
-- fix VPN connected background on Q
-- change S lockscreen clock color
-- small install script and further bug fixes
-- hopefully fixed some sqlite3 not found cases
+## ClearLineage v119
+- added proper support for S_V2 (and removed support for S)
+- fix task list drop down in light mode
+- remove exclamation mark when mobile data is disabled on S_V2
+- S_V2 system dialog redesign + blur
+- S_V2 settings redesign (homepage icons, background, old material toggles)
+- transparent device controls on S_V2
+- better notification snooze times
+- transparent taskbar on S_V2
+- redesigned settings master switches
+- transparent LineageOS Updater redesign
+- removed split notification shade from S_V2 quicksettings on tablets
