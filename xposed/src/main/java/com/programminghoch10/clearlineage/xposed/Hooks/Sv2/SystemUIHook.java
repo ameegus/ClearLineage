@@ -57,6 +57,8 @@ public class SystemUIHook implements HookCode {
                 //param.args[2] = Color.BLACK;
             }
         });
+        Class<?> scrimstateclass = XposedHelpers.findClass("com.android.systemui.statusbar.phone.ScrimState", lpparam.classLoader);
+        XposedHelpers.findAndHookMethod(scrimstateclass, "setClipQsScrim", boolean.class, XC_MethodReplacement.DO_NOTHING);
         
         Class<?> qstileviewimpl = XposedHelpers.findClass("com.android.systemui.qs.tileimpl.QSTileViewImpl", lpparam.classLoader);
         XposedHelpers.findAndHookConstructor(qstileviewimpl, Context.class, "com.android.systemui.plugins.qs.QSIconView", boolean.class, new XC_MethodHook() {
