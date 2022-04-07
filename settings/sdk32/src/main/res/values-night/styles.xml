@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Panel" parent="@*android:style/Theme.DeviceDefault.Settings.Dialog">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:colorBackgroundFloating">@null</item>
+        <item name="android:colorBackground">@*android:color/primary_device_default_dark</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.25</item>
+        <item name="android:windowBlurBehindEnabled">true</item>
+        <item name="android:windowBlurBehindRadius">5dp</item>
+    </style>
+</resources>
