@@ -33,9 +33,9 @@ public class HooksMap {
         list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.R, PACKAGE_UPDATER, com.programminghoch10.clearlineage.xposed.Hooks.UpdaterHook.class));
         
         // Sv2
-        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.Sv2.SystemUIHook.class));
-        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.Sv2.TrebuchetHook.class));
-        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.Sv2.SettingsHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_SYSTEMUI, com.programminghoch10.clearlineage.xposed.Hooks.S_V2.SystemUIHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_LAUNCHER3, com.programminghoch10.clearlineage.xposed.Hooks.S_V2.TrebuchetHook.class));
+        list.add(new HookEntry(HOOKTYPE.CODE, Build.VERSION_CODES.S_V2, PACKAGE_SETTINGS, com.programminghoch10.clearlineage.xposed.Hooks.S_V2.SettingsHook.class));
         list.add(new HookEntry(HOOKTYPE.BOTH, Build.VERSION_CODES.S_V2, PACKAGE_UPDATER, com.programminghoch10.clearlineage.xposed.Hooks.UpdaterHook.class));
     }
     

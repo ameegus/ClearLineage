@@ -1,7 +1,6 @@
-package com.programminghoch10.clearlineage.xposed.Hooks.Sv2;
+package com.programminghoch10.clearlineage.xposed.Hooks.S_V2;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
