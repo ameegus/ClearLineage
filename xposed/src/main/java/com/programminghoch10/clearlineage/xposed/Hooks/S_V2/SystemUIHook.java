@@ -13,8 +13,6 @@ import com.programminghoch10.clearlineage.xposed.Utils;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -28,37 +26,37 @@ public class SystemUIHook implements HookCode {
     
     public void hook(XC_LoadPackage.LoadPackageParam lpparam) throws Exception {
         Class<?> scrimcontrollerclass = XposedHelpers.findClass("com.android.systemui.statusbar.phone.ScrimController", lpparam.classLoader);
+        Class<?> scrimviewclass = XposedHelpers.findClass("com.android.systemui.scrim.ScrimView", lpparam.classLoader);
+        Method getScrimNameMethod = XposedHelpers.findMethodExact(scrimcontrollerclass, "getScrimName", scrimviewclass);
         XposedHelpers.findAndHookMethod(scrimcontrollerclass, "updateScrimColor", View.class, float.class, int.class, new XC_MethodHook() {
-            @TargetApi(Build.VERSION_CODES.S)
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                class ScrimField {
-                    final Object object;
-                    final float targetAlpha;
-                    
-                    ScrimField(Object object, float targetAlpha) {
-                        this.object = object;
-                        this.targetAlpha = targetAlpha;
-                    }
+                String mState = XposedHelpers.getObjectField(param.thisObject, "mState").toString();
+                if (mState.equals("KEYGUARD")) {
+                    param.args[1] = 0.0f;
+                    return;
+                }
+                if (mState.contains("BOUNCER")) {
+                    param.args[1] = (float) param.args[1] * 0.5f;
+                    return;
                 }
                 Context context = ((View) param.args[0]).getContext();
                 boolean usesSplitShade = context.getResources().getBoolean(
                         context.getResources().getIdentifier("config_use_split_notification_shade", "bool", HooksMap.PACKAGE_SYSTEMUI)
                 );
-                List<ScrimField> scrims = List.of(
-                        new ScrimField(XposedHelpers.findField(scrimcontrollerclass, "mScrimBehind").get(param.thisObject), 0.5f),
-                        new ScrimField(XposedHelpers.findField(scrimcontrollerclass, "mNotificationsScrim").get(param.thisObject), usesSplitShade ? 0.0f : 0.5f)
-                );
-                Optional<ScrimField> fieldOp = scrims.stream().filter(item -> item.object.equals(param.args[0])).findAny();
-                if (!fieldOp.isPresent())
-                    return;
-                ScrimField field = fieldOp.get();
-                param.args[1] = (float) param.args[1] * field.targetAlpha;
-                //param.args[2] = Color.BLACK;
+                switch (getScrimNameMethod.invoke(param.thisObject, param.args[0]).toString()) {
+                    case "front_scrim":
+                    case "behind_scrim":
+                        param.args[1] = (float) param.args[1] * 0.5f;
+                        break;
+                    case "notifications_scrim":
+                        param.args[1] = (float) param.args[1] * (usesSplitShade ? 0.0f : 0.5f);
+                        break;
+                }
             }
         });
         Class<?> scrimstateclass = XposedHelpers.findClass("com.android.systemui.statusbar.phone.ScrimState", lpparam.classLoader);
-        XposedHelpers.findAndHookMethod(scrimstateclass, "setClipQsScrim", boolean.class, XC_MethodReplacement.DO_NOTHING);
+        XposedHelpers.findAndHookMethod(scrimstateclass, "updateScrimColor", scrimviewclass, float.class, int.class, XC_MethodReplacement.DO_NOTHING);
         
         Class<?> qstileviewimpl = XposedHelpers.findClass("com.android.systemui.qs.tileimpl.QSTileViewImpl", lpparam.classLoader);
         XposedHelpers.findAndHookConstructor(qstileviewimpl, Context.class, "com.android.systemui.plugins.qs.QSIconView", boolean.class, new XC_MethodHook() {
