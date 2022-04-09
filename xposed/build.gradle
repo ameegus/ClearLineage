@@ -24,7 +24,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_9
     }
 
-    lintOptions {
+    lint {
         checkReleaseBuilds false
     }
 }
