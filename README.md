@@ -44,13 +44,13 @@ or via Telegram
 
 Development on Linux is very easy:
 - Compile and deploy to device:  
-  `./compile.sh && ./install-to-device.sh && adb reboot`
+  `./compile.sh && ./install-to-device.sh`
 - Recover device if crashing on boot:  
   `./recover-device.sh`
 - Monitor overlay `android`:  
-  `watch adb shell cmd overlay dump com.programminghoch10.clearlineage.android`
-- Monitor Logcat of TAG `ClearLineage`:  
-  `while (true); do adb logcat -s ClearLineage; done`
+  `./monitor-device.sh overlay android`
+- Monitor Logcat of ClearLineage and related entries:  
+  `./monitor-device.sh logcat`
 
 ### Contributions
 
